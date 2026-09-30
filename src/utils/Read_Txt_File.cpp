@@ -1,0 +1,73 @@
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include <string>
+
+using std::vector;
+using std::string;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::fstream;
+
+typedef enum{
+    ADDRESS_TXT, LABEL_TXT
+} Read_Txt_File_Mode;
+
+inline void Process_Address(string& address){
+    for(char& c:address){
+        if(c == '\\') c = '/';
+    }
+}
+
+vector<string> Read_Txt_File(const string& File_Path){
+    vector<string> Txt_Lines;
+    fstream file(File_Path);
+
+    if(!file.is_open()){
+        cout << "Failed to find \'" << File_Path << "\'" << endl;
+        return {};
+    }
+
+    string Line;
+    while(getline(file, Line)){
+        Txt_Lines.emplace_back(Line);
+    }
+
+    file.close();
+
+    return Txt_Lines;
+}
+
+vector<string> Read_Txt_File(const string& File_Path, const int Type){
+    vector<string> Txt_Lines;
+    fstream file(File_Path);
+
+    if(!file.is_open()){
+        cout << "Failed to find \'" << File_Path << "\'" << endl;
+        return {};
+    }
+
+    string Line;
+    while(getline(file, Line)){
+        switch(Type){
+            case ADDRESS_TXT:{
+                if(Line.front() != '#'){
+                    Txt_Lines.emplace_back(Line);
+                }
+
+                break;
+            }
+            
+            case LABEL_TXT:{
+                Txt_Lines.emplace_back(Line);
+
+                break;
+            }
+        }
+    }
+
+    file.close();
+
+    return Txt_Lines;
+}

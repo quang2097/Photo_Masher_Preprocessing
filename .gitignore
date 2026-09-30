@@ -1,0 +1,6 @@
+# Cpp build files.
+build
+
+# VSCode files.
+.vscode
+
