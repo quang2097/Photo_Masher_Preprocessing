@@ -4,4 +4,4 @@
 
 # Out_Lables_Path
 
-# Out_Labels_Path
+# Out_Photos_Path

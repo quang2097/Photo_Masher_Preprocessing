@@ -1,5 +1,5 @@
 [submodule "libs/opencv_cpp"]
-	path = modules/opencv_cpp
+	path = libs/opencv_cpp
 	url = https://github.com/opencv/opencv.git
 [submodule "libs/GuiLite"]
 	path = libs/GuiLite

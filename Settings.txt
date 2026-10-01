@@ -1,0 +1,7 @@
+# Resolution horizontal.
+
+# Resolution vertical.
+
+# Photos horizontal.
+
+# Photos vertical.

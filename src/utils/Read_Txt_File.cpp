@@ -11,21 +11,23 @@ using std::endl;
 using std::fstream;
 
 typedef enum{
-    ADDRESS_TXT, LABEL_TXT
+    ADDRESS_TXT, LABEL_TXT, SETTING_TXT
 } Read_Txt_File_Mode;
 
 inline void Process_Address(string& address){
     for(char& c:address){
-        if(c == '\\') c = '/';
+        if(c == '\\'){ 
+            c = '/';
+        }
     }
 }
 
-vector<string> Read_Txt_File(const string& File_Path){
+vector<string> Read_Txt_File(const string& FILE_PATH){
     vector<string> Txt_Lines;
-    fstream file(File_Path);
+    fstream file(FILE_PATH);
 
     if(!file.is_open()){
-        cout << "Failed to find \'" << File_Path << "\'" << endl;
+        cout << "Failed to find \'" << FILE_PATH << "\'" << endl;
         return {};
     }
 
@@ -39,18 +41,18 @@ vector<string> Read_Txt_File(const string& File_Path){
     return Txt_Lines;
 }
 
-vector<string> Read_Txt_File(const string& File_Path, const int Type){
+vector<string> Read_Txt_File(const string& FILE_PATH, const Read_Txt_File_Mode TYPE){
     vector<string> Txt_Lines;
-    fstream file(File_Path);
+    fstream file(FILE_PATH);
 
     if(!file.is_open()){
-        cout << "Failed to find \'" << File_Path << "\'" << endl;
+        cout << "Failed to find \'" << FILE_PATH << "\'" << endl;
         return {};
     }
 
     string Line;
     while(getline(file, Line)){
-        switch(Type){
+        switch(TYPE){
             case ADDRESS_TXT:{
                 if(Line.front() != '#'){
                     Txt_Lines.emplace_back(Line);
@@ -59,7 +61,7 @@ vector<string> Read_Txt_File(const string& File_Path, const int Type){
                 break;
             }
             
-            case LABEL_TXT:{
+            case LABEL_TXT:case SETTING_TXT:{
                 Txt_Lines.emplace_back(Line);
 
                 break;
