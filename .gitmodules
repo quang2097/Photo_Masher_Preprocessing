@@ -1,3 +1,6 @@
-[submodule "modules/opencv_cpp"]
+[submodule "libs/opencv_cpp"]
 	path = modules/opencv_cpp
 	url = https://github.com/opencv/opencv.git
+[submodule "libs/GuiLite"]
+	path = libs/GuiLite
+	url = https://github.com/idea4good/GuiLite.git
