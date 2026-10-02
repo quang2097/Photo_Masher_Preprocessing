@@ -8,4 +8,4 @@ using std::vector;
 
 string Get_Executable_Path();
 
-string Get_Executable_Directory()
+string Get_Executable_Directory();

@@ -48,5 +48,5 @@ string Get_Executable_Path() {
 
 //find the path of the executable file
 string Get_Executable_Directory() {
-    return std::filesystem::path(getExecutablePath()).parent_path().string();
+    return std::filesystem::path(Get_Executable_Path()).parent_path().string();
 }
