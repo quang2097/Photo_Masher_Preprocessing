@@ -135,7 +135,7 @@ int main(void){
     cout << "Get settings from txt successful." << endl;
 
     // Look for input photo directory
-    cout << "Looking for photo directory." << endl;
+    cout << "Looking for input photo directory." << endl;
     
     if(!fs::exists(In_Photos_Path)){
         cout << "Failed to find input photo directory." << endl;
@@ -149,14 +149,14 @@ int main(void){
     // Gathering valid image file paths
     cout << "Gathering valid images from directory." << endl;
 
-    int check = Get_Photo_Paths();
+    int Check = Get_Photo_Paths();
 
-    if(check == 1){
+    if(Check == 1){
         return 1;
     }
 
     // Look for output photo directory
-    cout << "Looking for photo directory." << endl;
+    cout << "Looking for output photo directory." << endl;
     
     if(!fs::exists(In_Photos_Path)){
         cout << "Failed to find output photo directory." << endl;
