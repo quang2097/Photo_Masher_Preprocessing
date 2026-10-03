@@ -95,7 +95,7 @@ int Mash_Photos(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, 
             *Index += 1;
         }
         
-        fs::path Out_File = fs::path(OUT_PHOTOS_PATH) / ("Mashed_" + In_Photo_Paths[*Index].filename.string());
+        fs::path Out_File = fs::path(OUT_PHOTOS_PATH)/("Mashed_" + In_Photo_Paths[*Index].filename().string());
         cv::imwrite(Out_File.string(), Mashed_Photo);
 
         delete Index;

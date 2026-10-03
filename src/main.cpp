@@ -25,6 +25,9 @@ string Out_Photos_Path;
 vector<fs::path> In_Photo_Paths;
 vector<fs::path> In_Label_Paths;
 
+vector<vector<fs::path>> Valid_Photo_Paths;
+vector<vector<fs::path>> Valid_Label_Paths;
+
 // const float DUMMY = 0.7071067;
 
 int Resolution_Horizontal = -1;
@@ -120,21 +123,35 @@ int Get_Label_Paths(){
 }
 
 int Get_Valid_Label_Paths(){
-    vector<fs::path> Valid_Label_Paths;
+    vector<vector<fs::path>> Label_Paths;
 
-    for(int Index = 0;Index < In_Photo_Paths.size();Index += 1){
-        Valid_Label_Paths.push_back(fs::path(In_Labels_Path)/(In_Photo_Paths[Index].filename().string() + ".txt"));
+    if(Valid_Photo_Paths.empty() || Valid_Photo_Paths.front().empty()){
+        cout << "No valid paths exists to compare." << endl;
+
+        return 1;
     }
 
-    if(Valid_Label_Paths.empty()){
+    for(int Row = 0;Row < Valid_Photo_Paths.size();Row += 1){
+        vector<fs::path> Paths;
+
+        for(int Column = 0; Column < Valid_Photo_Paths.front().size();Column += 1){
+            fs::path Path = fs::path(In_Labels_Path)/(Valid_Photo_Paths[Row][Column].stem().string() + ".txt");
+
+            Paths.push_back(Path);
+        }
+
+        Label_Paths.push_back(Paths);
+    }
+
+    if(Label_Paths.empty()){
         cout << "Failed fo get valid label paths." << endl;
 
         return 1;
     }
 
-    In_Label_Paths = Valid_Label_Paths;
+    Valid_Label_Paths = Label_Paths;
 
-    cout << "Found " << Valid_Label_Paths.size() << " valid label paths." << endl;
+    cout << "Found " << Valid_Label_Paths.size() * Valid_Label_Paths.front().size() << " valid label paths." << endl;
 
     return 0;
 }
@@ -216,7 +233,7 @@ int main(void){
     cout << "Found output photo directory" << endl;
 
     // Mash photo
-    int Check = Mash_Photos(In_Photo_Paths, Out_Photos_Path, Resolution_Horizontal, Resolution_Vertical
+    int Check = Mash_Photos(In_Photo_Paths, Valid_Photo_Paths, Out_Photos_Path, Resolution_Horizontal, Resolution_Vertical
                             , Number_Of_Photos_Horizontal, Number_Of_Photos_Vertical, VARIABLE_PATH);
 
     if(Check == 1){
