@@ -12,16 +12,20 @@ using std::cout;
 using std::cin;
 using std::string; 
 using std::stoi;
+using std::endl;
 
 string Exe_File_Path;
 string Exe_Directory_Path;
 
 string In_Labels_Path;
 string In_Photos_Path;
-string Out_Lables_Path;
+string Out_Labels_Path;
 string Out_Photos_Path;
 
 vector<fs::path> In_Photo_Paths;
+vector<fs::path> In_Label_Paths;
+
+// const float DUMMY = 0.7071067;
 
 int Resolution_Horizontal = -1;
 int Resolution_Vertical = -1;
@@ -39,7 +43,7 @@ int Get_Paths(const string& TXT_PATH){
 
     In_Labels_Path = In_Out_Paths[0];
     In_Photos_Path = In_Out_Paths[1];
-    Out_Lables_Path = In_Out_Paths[2];
+    Out_Labels_Path = In_Out_Paths[2];
     Out_Photos_Path = In_Out_Paths[3];
 
     return 0;
@@ -70,7 +74,7 @@ int Get_Settings(const string& TXT_PATH){
 int Get_Photo_Paths(){
     vector<fs::path> Photo_Paths;
 
-    for(const auto& PATH : fs::directory_iterator(In_Photo_Paths)){
+    for(const auto& PATH : fs::directory_iterator(In_Photos_Path)){
         if (PATH.is_regular_file() && (PATH.path().extension() == ".jpg" || PATH.path().extension() == ".jpeg")) {
             Photo_Paths.push_back(PATH);
         } else{
@@ -87,6 +91,50 @@ int Get_Photo_Paths(){
     In_Photo_Paths = Photo_Paths;
 
     cout << "Found " << Photo_Paths.size() << " valid photo files from directory." << endl;
+
+    return 0;
+}
+
+int Get_Label_Paths(){
+    vector<fs::path> Label_Paths;
+
+    for(const auto& PATH : fs::directory_iterator(In_Labels_Path)){
+        if (PATH.is_regular_file() && (PATH.path().extension() == ".txt")) {
+            Label_Paths.push_back(PATH);
+        } else{
+            cout << "Failed to input file \'" << PATH.path().string() << "\' " << "because of invalid file type, continuing." << endl;
+        }
+    }
+
+    if(Label_Paths.empty()){
+        cout << "Found no valid label files in directory.";
+
+        return 1;
+    }
+
+    In_Label_Paths = Label_Paths;
+
+    cout << "Found " << Label_Paths.size() << " valid label files from directory." << endl;
+
+    return 0;
+}
+
+int Get_Valid_Label_Paths(){
+    vector<fs::path> Valid_Label_Paths;
+
+    for(int Index = 0;Index < In_Photo_Paths.size();Index += 1){
+        Valid_Label_Paths.push_back(fs::path(In_Labels_Path)/(In_Photo_Paths[Index].filename().string() + ".txt"));
+    }
+
+    if(Valid_Label_Paths.empty()){
+        cout << "Failed fo get valid label paths." << endl;
+
+        return 1;
+    }
+
+    In_Label_Paths = Valid_Label_Paths;
+
+    cout << "Found " << Valid_Label_Paths.size() << " valid label paths." << endl;
 
     return 0;
 }
@@ -158,7 +206,7 @@ int main(void){
     // Look for output photo directory
     cout << "Looking for output photo directory." << endl;
     
-    if(!fs::exists(In_Photos_Path)){
+    if(!fs::exists(Out_Photos_Path)){
         cout << "Failed to find output photo directory." << endl;
         cout << "Check Paths.txt." << endl;
 
@@ -167,7 +215,45 @@ int main(void){
 
     cout << "Found output photo directory" << endl;
 
-    //Mash photo
+    // Mash photo
+    int Check = Mash_Photos(In_Photo_Paths, Out_Photos_Path, Resolution_Horizontal, Resolution_Vertical
+                            , Number_Of_Photos_Horizontal, Number_Of_Photos_Vertical, VARIABLE_PATH);
+
+    if(Check == 1){
+        cout << "Failed to mash photos." << endl;
+        return 1;
+    }
+
+    // Gathering valid label paths
+    cout << "Gathering valid labels from directory." << endl;
+
+    int Check = Get_Label_Paths();
+
+    if(Check == 1){
+        return 1;
+    }
+
+    // Look for outout label directory.
+    cout << "Looking for output label directory." << endl;
+    
+    if(!fs::exists(Out_Labels_Path)){
+        cout << "Failed to find output label directory." << endl;
+        cout << "Check Paths.txt." << endl;
+
+        return 1;
+    }
+
+    cout << "Found output label directory" << endl;
+
+    // Get valid label paths from the valid photo paths
+    int Check = Get_Valid_Label_Paths();
+
+    if(Check == 1){
+        return 1;
+    }
+
+    // 
+
     
 
     return 0;

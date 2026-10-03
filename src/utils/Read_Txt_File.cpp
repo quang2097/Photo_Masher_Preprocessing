@@ -13,15 +13,15 @@ typedef enum{
     ADDRESS_TXT, LABEL_TXT, SETTING_TXT
 } Read_Txt_File_Mode;
 
-inline void Process_Address(string& address){
-    for(char& c:address){
+inline void Process_Address(string& Address){
+    for(char& c:Address){
         if(c == '\\'){ 
             c = '/';
         }
     }
 }
 
-vector<string> Read_Txt_File(const string& FILE_PATH){
+vector<string> Read_Txt_File(const string FILE_PATH){
     vector<string> Txt_Lines;
     fstream file(FILE_PATH);
 
@@ -40,12 +40,12 @@ vector<string> Read_Txt_File(const string& FILE_PATH){
     return Txt_Lines;
 }
 
-vector<string> Read_Txt_File(const string& FILE_PATH, const Read_Txt_File_Mode TYPE){
+vector<string> Read_Txt_File(const string FILE_PATH, const Read_Txt_File_Mode TYPE){
     vector<string> Txt_Lines;
     fstream file(FILE_PATH);
 
     if(!file.is_open()){
-        cout << "Failed to find \'" << FILE_PATH << "\'" << endl;
+        cout << "Failed to open \'" << FILE_PATH << "\'" << endl;
         return {};
     }
 
