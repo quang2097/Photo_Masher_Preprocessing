@@ -155,25 +155,24 @@ int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>> 
             if(SET_MODE == VARIABLE_PATH){
                 Photo_Paths.push_back(IN_PHOTO_PATHS[*Index]);
             }
-            
 
             *Index += 1;
 
             if(SET_MODE == VARIABLE_PATH){
-                Valid_Photo_Paths_Local.push_back(IN_PHOTO_PATHS[Current_Index - 1]); 
+                Photo_Paths.push_back(IN_PHOTO_PATHS[Current_Index - 1]); 
             }
 
             Photos.push_back(Photo);
         }
 
-        if(SET_MODE == VARIABLE_PATH){
-            Valid_Photo_Paths_Local.push_back(Photo_Paths);
-        }
-
         // Mash photo.
         if(Photos.size() < NUMBER_OF_PHOTOS_PER_PHOTO){
             cout << "Not enough photos to mash, skipping the rest.";
+            delete Index;
 
+            break;
+        } else if(Photos.size() > NUMBER_OF_PHOTOS_PER_PHOTO){
+            cout << "There is something wrong with the mashing program fetching too many photos.";
             delete Index;
 
             break;
@@ -196,6 +195,10 @@ int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>> 
             Photos[*Index].copyTo(Mashed_Photo(ROI));
             
             *Index += 1;
+        }
+
+        if(SET_MODE == VARIABLE_PATH){
+            Valid_Photo_Paths_Local.push_back(Photo_Paths);
         }
         
         fs::path Out_File = fs::path(OUT_PHOTOS_PATH) / ("Mashed_" + IN_PHOTO_PATHS[*Index].filename.string());
