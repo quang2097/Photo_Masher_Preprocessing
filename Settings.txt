@@ -1,7 +1,8 @@
 # Resolution horizontal.
-
+1280
 # Resolution vertical.
-
+1280
 # Photos horizontal.
-
+7
 # Photos vertical.
+7

@@ -40,6 +40,8 @@ int Number_Of_Photos_Horizontal = -1;
 int Number_Of_Photos_Vertical = -1;
 
 int Get_Exe_File_Path(){
+    cout<< endl << "Getting exe file path." << endl;
+
     Exe_File_Path = Get_Executable_Path();
 
     Exe_Directory_Path = Get_Executable_Directory();
@@ -96,7 +98,7 @@ int Get_Settings(const string& TXT_PATH){
     Resolution_Horizontal = Settings_Integer[0];
     Resolution_Vertical = Settings_Integer[1];
     Number_Of_Photos_Horizontal = Settings_Integer[2];
-    Number_Of_Photos_Horizontal = Settings_Integer[3];
+    Number_Of_Photos_Vertical = Settings_Integer[3];
 
     cout << "Get settings from txt successful." << endl;
 
@@ -119,6 +121,8 @@ int Look_For_Input_Photo_Directory(){
 }
 
 int Get_Photo_Paths(){
+    cout << "Gathering valid images from directory." << endl;
+
     vector<fs::path> Photo_Paths;
 
     for(const auto& PATH : fs::directory_iterator(In_Photos_Path)){
@@ -142,7 +146,24 @@ int Get_Photo_Paths(){
     return 0;
 }
 
+int Look_For_Output_Photo_Directory(){
+    cout << "Looking for output photo directory." << endl;
+    
+    if(!fs::exists(Out_Photos_Path)){
+        cout << "Failed to find output photo directory." << endl;
+        cout << "Check Paths.txt." << endl;
+
+        return 1;
+    }
+
+    cout << "Found output photo directory" << endl;
+
+    return 0;
+}
+
 int Get_Label_Paths(){
+    cout << "Gathering valid labels from directory." << endl;
+
     vector<fs::path> Label_Paths;
 
     for(const auto& PATH : fs::directory_iterator(In_Labels_Path)){
@@ -167,8 +188,7 @@ int Get_Label_Paths(){
 }
 
 int Get_Valid_Label_Paths(){
-    vector<vector<fs::path>> Label_Paths;
-    unordered_set<fs::path> Label_Paths_Umap(In_Label_Paths.begin(), In_Label_Paths.end());
+    cout << "Getting valid label paths." << endl;
 
     if(Valid_Photo_Paths.empty() || Valid_Photo_Paths.front().empty()){
         cout << "No valid paths exists to compare." << endl;
@@ -176,21 +196,23 @@ int Get_Valid_Label_Paths(){
         return 1;
     }
 
+    vector<vector<fs::path>> Label_Paths;
+    unordered_set<fs::path> In_Label_Paths_Umap(In_Label_Paths.begin(), In_Label_Paths.end());
+
     for(int Row = 0;Row < Valid_Photo_Paths.size();Row += 1){
         vector<fs::path> Paths;
 
-
         for(int Column = 0; Column < Valid_Photo_Paths.front().size();Column += 1){
-            fs::path Path = fs::path(In_Labels_Path)/(Valid_Photo_Paths[Row][Column].stem().string() + ".txt");
+            const fs::path PATH = fs::path(In_Labels_Path)/(Valid_Photo_Paths[Row][Column].stem().string() + ".txt");
 
-            if(!fs::exists(Path)){
+            if(In_Label_Paths_Umap.find(PATH) == In_Label_Paths_Umap.end()){
                 cout << "There are no labels for " << Valid_Photo_Paths[Row][Column].string() << "." << endl;
                 Paths.push_back(fs::path{});
 
                 continue;
             }
 
-            Paths.push_back(Path);
+            Paths.push_back(PATH);
         }
 
         Label_Paths.push_back(Paths);
@@ -209,82 +231,22 @@ int Get_Valid_Label_Paths(){
     return 0;
 }
 
-int main(void){
-    // Get path for exe file and it's directory to find the needed txt file.
-    cout<< endl << "Getting exe file path." << endl;
-
-    int Check = Get_Exe_File_Path();
-
-    if(Check == 1){
-        return 1;
-    }
-
-    // Get paths from the Paths.txt file
-    Path_Txt_Location = Exe_Directory_Path + "../Paths.txt";
-
-    int Check = Get_Paths(Path_Txt_Location);
-
-    if(Check == 1){
-        return 1;
-    }
-
-    // Get settings from the Settings.txt file
-    Settings_Txt_Location = Exe_Directory_Path + "../Settings.txt";
-
-    int Check = Get_Settings(Settings_Txt_Location);
-
+int Look_For_Input_Label_Directory(){
+    cout << "Looking for input label directory." << endl;
     
-    if(Check == 1){
-        return 1;
-    }
-
-    // Look for input photo directory
-    int Check = Look_For_Input_Photo_Directory();
-    
-    if(Check == 1){
-        return 1;
-    }
-
-    // Gathering valid image file paths
-    cout << "Gathering valid images from directory." << endl;
-
-    int Check = Get_Photo_Paths();
-
-    if(Check == 1){
-        return 1;
-    }
-
-    // Look for output photo directory
-    cout << "Looking for output photo directory." << endl;
-    
-    if(!fs::exists(Out_Photos_Path)){
-        cout << "Failed to find output photo directory." << endl;
+    if(!fs::exists(In_Label_Paths)){
+        cout << "Failed to find input label directory." << endl;
         cout << "Check Paths.txt." << endl;
 
         return 1;
     }
 
-    cout << "Found output photo directory" << endl;
+    cout << "Found input label directory" << endl;
 
-    // Mash photo
-    int Check = Mash_Photos(In_Photo_Paths, Valid_Photo_Paths, Out_Photos_Path, Resolution_Horizontal, Resolution_Vertical
-                            , Number_Of_Photos_Horizontal, Number_Of_Photos_Vertical, VARIABLE_PATH);
+    return 0;
+}
 
-    if(Check == 1){
-        cout << "Failed to mash photos." << endl;
-        return 1;
-    }
-
-    // Gathering valid label paths
-    cout << "Gathering valid labels from directory." << endl;
-
-    int Check = Get_Label_Paths();
-
-    if(Check == 1){
-        return 1;
-    }
-
-    // Look for outout label directory.
+int Look_For_Output_Label_Directory(){
     cout << "Looking for output label directory." << endl;
     
     if(!fs::exists(Out_Labels_Path)){
@@ -296,16 +258,101 @@ int main(void){
 
     cout << "Found output label directory" << endl;
 
+    return 0;
+}
+
+int main(void){
+    // Get path for exe file and it's directory to find the needed txt file.
+    int Check = Get_Exe_File_Path();
+
+    if(Check == 1){
+        return 1;
+    }
+
+    // Get paths from the Paths.txt file
+    Path_Txt_Location = Exe_Directory_Path + "../Paths.txt";
+
+    Check = Get_Paths(Path_Txt_Location);
+
+    if(Check == 1){
+        return 1;
+    }
+
+    // Get settings from the Settings.txt file
+    Settings_Txt_Location = Exe_Directory_Path + "../Settings.txt";
+
+    Check = Get_Settings(Settings_Txt_Location);
+    
+    if(Check == 1){
+        return 1;
+    }
+
+    // Look for input photo directory
+    Check = Look_For_Input_Photo_Directory();
+    
+    if(Check == 1){
+        return 1;
+    }
+
+    // Look for output photo directory
+    Check = Look_For_Output_Photo_Directory();
+
+    if(Check == 1){
+        return 1;
+    }
+
+    // Gathering valid image file paths
+    Check = Get_Photo_Paths();
+
+    if(Check == 1){
+        return 1;
+    }
+
+    // Look for input label directory
+    Check = Look_For_Input_Label_Directory();
+    
+    if(Check == 1){
+        return 1;
+    }
+
+    // Look for outout label directory.
+    Check = Look_For_Output_Label_Directory();
+
+    if(Check == 1){
+        return 1;
+    }
+
+    // Gathering valid label paths
+    Check = Get_Label_Paths();
+
+    if(Check == 1){
+        return 1;
+    }
+
+    // Mash photo
+    Check = Mash_Photos(In_Photo_Paths, Valid_Photo_Paths, Out_Photos_Path, Resolution_Horizontal, Resolution_Vertical
+                            , Number_Of_Photos_Horizontal, Number_Of_Photos_Vertical, VARIABLE_PATH);
+
+    if(Check == 1){
+        cout << "Failed to mash photos." << endl;
+        return 1;
+    }
+
     // Get valid label paths from the valid photo paths
-    int Check = Get_Valid_Label_Paths();
+    Check = Get_Valid_Label_Paths();
 
     if(Check == 1){
         return 1;
     }
 
     // Create labels
-    
-    
+    Check = Create_Labels(Valid_Label_Paths, Out_Labels_Path, Resolution_Horizontal, Resolution_Vertical, 
+                          Number_Of_Photos_Horizontal, Number_Of_Photos_Vertical);
+
+    if(Check == 1){
+        cout << "Failed to create scaled labels." << endl;
+        return 1;
+    }
 
     return 0;
-}   
+}

@@ -1,5 +1,5 @@
-#include "../include/Fix_Labels.cpp"
-#include "../include/Mash_Photos.cpp"
+#include "../include/Fix_Labels.hpp"
+#include "../include/Mash_Photos.hpp"
 
 class Photo_Masher{
 private:

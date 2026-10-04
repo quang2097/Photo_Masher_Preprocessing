@@ -4,3 +4,8 @@ build
 # VSCode files.
 .vscode
 
+#dataset
+dataset_download/Corn*
+
+#uv
+.venv

@@ -40,8 +40,8 @@ int Mash_Photos(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, 
         // Gather resized photos.
         vector<Mat> Photos;
 
-        int *Index = new int(0);
-        while(*Index < NUMBER_OF_PHOTOS_PER_PHOTO && Current_Index < In_Photo_Paths.size()){
+        int Index = 0;
+        while(Index < NUMBER_OF_PHOTOS_PER_PHOTO && Current_Index < In_Photo_Paths.size()){
             // Get actual photo from path.
             Mat Photo;
 
@@ -58,7 +58,7 @@ int Mash_Photos(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, 
                 continue;
             }
 
-            *Index += 1;
+            Index += 1;
 
             if(SET_MODE == VARIABLE_PATH){
                 Valid_Photo_Paths.push_back(In_Photo_Paths[Current_Index - 1]); 
@@ -80,22 +80,22 @@ int Mash_Photos(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, 
                          RESOLUTIONS_HORIZONTAL_PER_PHOTO * PHOTOS_HORIZONTAL, 
                          Photos[0].type());
 
-        *Index = 0;
-        while(*Index < NUMBER_OF_PHOTOS_PER_PHOTO){
-            int x = *Index % PHOTOS_HORIZONTAL;
-            int y = *Index / PHOTOS_HORIZONTAL;
+        Index = 0;
+        while(Index < NUMBER_OF_PHOTOS_PER_PHOTO){
+            int x = Index % PHOTOS_HORIZONTAL;
+            int y = Index / PHOTOS_HORIZONTAL;
             
             cv::Rect ROI(x * RESOLUTIONS_HORIZONTAL_PER_PHOTO, 
                          y * RESOLUTIONS_VERTICAL_PER_PHOTO, 
                          RESOLUTIONS_HORIZONTAL_PER_PHOTO, 
                          RESOLUTIONS_VERTICAL_PER_PHOTO);
                          
-            Photos[*Index].copyTo(Mashed_Photo(ROI));
+            Photos[Index].copyTo(Mashed_Photo(ROI));
             
-            *Index += 1;
+            Index += 1;
         }
         
-        fs::path Out_File = fs::path(OUT_PHOTOS_PATH)/("Mashed_" + In_Photo_Paths[*Index].filename().string());
+        fs::path Out_File = fs::path(OUT_PHOTOS_PATH)/("Mashed_" + std::to_string(Index) + In_Photo_Paths[Index].extension().string());
         cv::imwrite(Out_File.string(), Mashed_Photo);
 
         delete Index;
@@ -116,7 +116,7 @@ int Mash_Photos(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, 
     return 0;
 }
 
-int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>> Valid_Photo_Paths, const string OUT_PHOTOS_PATH, 
+int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>>& Valid_Photo_Paths, const string OUT_PHOTOS_PATH, 
                 const int RESOLUTIONS_HORIZONTAL, const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, 
                 const int PHOTOS_VERTICAL, const Setting SET_MODE){
     // Mash photos
@@ -134,8 +134,8 @@ int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>> 
         vector<fs::path> Photo_Paths;
         vector<Mat> Photos;
 
-        int *Index = new int(0);
-        while(*Index < NUMBER_OF_PHOTOS_PER_PHOTO && Current_Index < IN_PHOTO_PATHS.size()){
+        int Index = new int(0);
+        while(Index < NUMBER_OF_PHOTOS_PER_PHOTO && Current_Index < IN_PHOTO_PATHS.size()){
             // Get actual photo from path.
             Mat Photo;
 
@@ -153,10 +153,10 @@ int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>> 
             }
 
             if(SET_MODE == VARIABLE_PATH){
-                Photo_Paths.push_back(IN_PHOTO_PATHS[*Index]);
+                Photo_Paths.push_back(IN_PHOTO_PATHS[Index]);
             }
 
-            *Index += 1;
+            Index += 1;
 
             if(SET_MODE == VARIABLE_PATH){
                 Photo_Paths.push_back(IN_PHOTO_PATHS[Current_Index - 1]); 
@@ -182,26 +182,26 @@ int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>> 
                          RESOLUTIONS_HORIZONTAL_PER_PHOTO * PHOTOS_HORIZONTAL, 
                          Photos[0].type());
 
-        *Index = 0;
-        while(*Index < NUMBER_OF_PHOTOS_PER_PHOTO){
-            int x = *Index % PHOTOS_HORIZONTAL;
-            int y = *Index / PHOTOS_HORIZONTAL;
+        Index = 0;
+        while(Index < NUMBER_OF_PHOTOS_PER_PHOTO){
+            int x = Index % PHOTOS_HORIZONTAL;
+            int y = Index / PHOTOS_HORIZONTAL;
             
             cv::Rect ROI(x * RESOLUTIONS_HORIZONTAL_PER_PHOTO, 
                          y * RESOLUTIONS_VERTICAL_PER_PHOTO, 
                          RESOLUTIONS_HORIZONTAL_PER_PHOTO, 
                          RESOLUTIONS_VERTICAL_PER_PHOTO);
                          
-            Photos[*Index].copyTo(Mashed_Photo(ROI));
+            Photos[Index].copyTo(Mashed_Photo(ROI));
             
-            *Index += 1;
+            Index += 1;
         }
 
         if(SET_MODE == VARIABLE_PATH){
             Valid_Photo_Paths_Local.push_back(Photo_Paths);
         }
         
-        fs::path Out_File = fs::path(OUT_PHOTOS_PATH) / ("Mashed_" + IN_PHOTO_PATHS[*Index].filename.string());
+        fs::path Out_File = fs::path(OUT_PHOTOS_PATH) / ("Mashed_" + IN_PHOTO_PATHS[Index].filename().string());
         cv::imwrite(Out_File.string(), Mashed_Photo);
 
         delete Index;
