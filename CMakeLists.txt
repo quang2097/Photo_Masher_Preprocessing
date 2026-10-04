@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(ObjectSeparator CXX)
+project(Photo_Masher_Preprocessing CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(ObjectSeparator_program
+add_executable(Photo_Masher_Program
     src/main.cpp
     src/Create_Labels.cpp
     src/Mash_Photos.cpp
@@ -14,10 +14,10 @@ add_executable(ObjectSeparator_program
     src/utils/Get_Exe_Path.cpp
 )
 
-target_include_directories(ObjectSeparator_program PRIVATE
+target_include_directories(Photo_Masher_Program PRIVATE
     include
 )
 
-find_package(OpenCV REQUIRED PATHS libs/opencv_cpp/build_linux)
+find_package(OpenCV REQUIRED PATHS libs/opencv_cpp/build)
 
-target_link_libraries(ObjectSeparator_program PRIVATE ${OpenCV_LIBS})
+target_link_libraries(Photo_Masher_Program PRIVATE ${OpenCV_LIBS})

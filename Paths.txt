@@ -1,8 +1,8 @@
 # In_Labels_Path
-/mnt/storage/whateveraboutit/Photo_Masher_Preprocessing/dataset_download/Corn-Leaf-Disease-1/train/labels
+D:\whateveraboutit\Photo_Masher_Preprocessing\dataset_download\Corn-Leaf-Disease-1\train\labels
 # In_Photos_Path
-/mnt/storage/whateveraboutit/Photo_Masher_Preprocessing/dataset_download/Corn-Leaf-Disease-1/train/images
+D:\whateveraboutit\Photo_Masher_Preprocessing\dataset_download\Corn-Leaf-Disease-1\train\images
 # Out_Lables_Path
-/mnt/storage/whateveraboutit/Photo_Masher_Preprocessing/output/Label_output
+D:\whateveraboutit\Photo_Masher_Preprocessing\output\Label_output
 # Out_Photos_Path
-/mnt/storage/whateveraboutit/Photo_Masher_Preprocessing/output/Photo_output
+D:\whateveraboutit\Photo_Masher_Preprocessing\output\Image_output

@@ -1,11 +1,13 @@
 # Cpp build files.
-build
+build*
 
 # VSCode files.
 .vscode
 
 #dataset
 dataset_download/Corn*
+output
+dataset_download
 
 #uv
 .venv

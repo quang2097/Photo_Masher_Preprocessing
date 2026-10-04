@@ -4,6 +4,7 @@
 #include "../include/src/utils/Read_Txt_File.hpp"
 #include "../include/src/utils/Get_Exe_Path.hpp"
 #include "../include/src/Mash_Photos.hpp"
+#include "../include/src/Create_Labels.hpp"
 #include <filesystem>
 #include <unordered_set>
 
@@ -202,7 +203,7 @@ int Get_Valid_Label_Paths(){
     for(int Row = 0;Row < Valid_Photo_Paths.size();Row += 1){
         vector<fs::path> Paths;
 
-        for(int Column = 0; Column < Valid_Photo_Paths.front().size();Column += 1){
+        for(int Column = 0; Column < Valid_Photo_Paths[Row].size(); Column += 1){
             const fs::path PATH = fs::path(In_Labels_Path)/(Valid_Photo_Paths[Row][Column].stem().string() + ".txt");
 
             if(In_Label_Paths_Umap.find(PATH) == In_Label_Paths_Umap.end()){
@@ -234,7 +235,7 @@ int Get_Valid_Label_Paths(){
 int Look_For_Input_Label_Directory(){
     cout << "Looking for input label directory." << endl;
     
-    if(!fs::exists(In_Label_Paths)){
+    if(!fs::exists(In_Labels_Path)){
         cout << "Failed to find input label directory." << endl;
         cout << "Check Paths.txt." << endl;
 
@@ -270,7 +271,7 @@ int main(void){
     }
 
     // Get paths from the Paths.txt file
-    Path_Txt_Location = Exe_Directory_Path + "../Paths.txt";
+    Path_Txt_Location = Exe_Directory_Path + "/../Paths.txt";
 
     Check = Get_Paths(Path_Txt_Location);
 
@@ -279,7 +280,7 @@ int main(void){
     }
 
     // Get settings from the Settings.txt file
-    Settings_Txt_Location = Exe_Directory_Path + "../Settings.txt";
+    Settings_Txt_Location = Exe_Directory_Path + "/../Settings.txt";
 
     Check = Get_Settings(Settings_Txt_Location);
     
@@ -330,7 +331,7 @@ int main(void){
     }
 
     // Mash photo
-    Check = Mash_Photos(In_Photo_Paths, Valid_Photo_Paths, Out_Photos_Path, Resolution_Horizontal, Resolution_Vertical
+    Check = Mash_Photos_2(In_Photo_Paths, Valid_Photo_Paths, Out_Photos_Path, Resolution_Horizontal, Resolution_Vertical
                             , Number_Of_Photos_Horizontal, Number_Of_Photos_Vertical, VARIABLE_PATH);
 
     if(Check == 1){

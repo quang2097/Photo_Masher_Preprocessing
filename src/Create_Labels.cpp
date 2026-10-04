@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "../src/utils/Read_Txt_File.hpp"
+#include "../include/src/utils/Read_Txt_File.hpp"
 
 namespace fs = std::filesystem;
 using std::string;
@@ -24,16 +24,16 @@ int Create_Labels(const vector<vector<fs::path>>& VALID_LABEL_PATHS, const strin
     for(int Row = 0; Row < VALID_LABEL_PATHS.size(); Row += 1){
         
         // Derive a new filename based on the first valid photo in this mash row
-        string base_name = "Mashed_Labels_" + std::to_string(Row);
-        for (const auto& path : VALID_LABEL_PATHS[Row]) {
-            if (!path.empty()) {
-                base_name = "Mashed_" + path.stem().string();
+        string Base_Name = "Mashed_Labels_" + std::to_string(Row);
+        for (int Column = 0;Column < VALID_LABEL_PATHS[Row].size();Column += 1) {
+            if (!VALID_LABEL_PATHS[Row][Column].empty()) {
+                Base_Name = "Mashed_" + std::to_string(Row + 1);
                 break;
             }
         }
 
-        fs::path out_filepath = fs::path(OUT_LABELS_PATH) / (base_name + ".txt");
-        std::ofstream outfile(out_filepath);
+        fs::path Out_Filepath = fs::path(OUT_LABELS_PATH) / (Base_Name + ".txt");
+        std::ofstream outfile(Out_Filepath);
 
         if(!outfile.is_open()){
             cout << "Failed to create label output for row " << Row << endl;

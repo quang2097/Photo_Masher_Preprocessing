@@ -52,7 +52,7 @@ vector<string> Read_Txt_File(const string FILE_PATH, const Read_Txt_File_Mode TY
     string Line;
     while(getline(file, Line)){
         switch(TYPE){
-            case ADDRESS_TXT:{
+            case ADDRESS_TXT:case SETTING_TXT:{
                 if(Line.front() != '#'){
                     Txt_Lines.emplace_back(Line);
                 }
@@ -60,7 +60,7 @@ vector<string> Read_Txt_File(const string FILE_PATH, const Read_Txt_File_Mode TY
                 break;
             }
             
-            case LABEL_TXT:case SETTING_TXT:{
+            case LABEL_TXT:{
                 Txt_Lines.emplace_back(Line);
 
                 break;

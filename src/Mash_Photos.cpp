@@ -20,10 +20,6 @@ using std::floor;
 using std::round;
 using std::ceil;
 
-typedef enum{
-    CONSTANT_PATH, VARIABLE_PATH
-} Setting;
-
 int Mash_Photos(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, const int RESOLUTIONS_HORIZONTAL, 
                 const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL, const Setting SET_MODE){
     // Mash photos
@@ -36,7 +32,7 @@ int Mash_Photos(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, 
 
     cout << "Mashing photos." << endl;
 
-    while(Current_Index < In_Photo_Paths.size() - NUMBER_OF_PHOTOS_PER_PHOTO){
+    while (Current_Index + NUMBER_OF_PHOTOS_PER_PHOTO <= In_Photo_Paths.size()){
         // Gather resized photos.
         vector<Mat> Photos;
 
@@ -71,8 +67,6 @@ int Mash_Photos(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, 
         if(Photos.size() < NUMBER_OF_PHOTOS_PER_PHOTO){
             cout << "Not enough photos to mash, skipping the rest.";
 
-            delete Index;
-
             break;
         }
         
@@ -95,10 +89,10 @@ int Mash_Photos(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, 
             Index += 1;
         }
         
-        fs::path Out_File = fs::path(OUT_PHOTOS_PATH)/("Mashed_" + std::to_string(Index) + In_Photo_Paths[Index].extension().string());
+        string Batch_Base_Name = In_Photo_Paths[Current_Index - NUMBER_OF_PHOTOS_PER_PHOTO].filename().string();
+        fs::path Out_File = fs::path(OUT_PHOTOS_PATH) / ("Mashed_" + Batch_Base_Name);
         cv::imwrite(Out_File.string(), Mashed_Photo);
 
-        delete Index;
         Count_Mashed += 1;
     }
 
@@ -116,7 +110,7 @@ int Mash_Photos(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, 
     return 0;
 }
 
-int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>>& Valid_Photo_Paths, const string OUT_PHOTOS_PATH, 
+int Mash_Photos_2(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>>& Valid_Photo_Paths, const string OUT_PHOTOS_PATH, 
                 const int RESOLUTIONS_HORIZONTAL, const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, 
                 const int PHOTOS_VERTICAL, const Setting SET_MODE){
     // Mash photos
@@ -129,12 +123,12 @@ int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>>&
 
     cout << "Mashing photos." << endl;
 
-    while(Current_Index < IN_PHOTO_PATHS.size() - NUMBER_OF_PHOTOS_PER_PHOTO){
+    while (Current_Index + NUMBER_OF_PHOTOS_PER_PHOTO <= IN_PHOTO_PATHS.size()){
         // Gather resized photos.
         vector<fs::path> Photo_Paths;
         vector<Mat> Photos;
 
-        int Index = new int(0);
+        int Index = 0;
         while(Index < NUMBER_OF_PHOTOS_PER_PHOTO && Current_Index < IN_PHOTO_PATHS.size()){
             // Get actual photo from path.
             Mat Photo;
@@ -152,10 +146,6 @@ int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>>&
                 continue;
             }
 
-            if(SET_MODE == VARIABLE_PATH){
-                Photo_Paths.push_back(IN_PHOTO_PATHS[Index]);
-            }
-
             Index += 1;
 
             if(SET_MODE == VARIABLE_PATH){
@@ -168,13 +158,11 @@ int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>>&
         // Mash photo.
         if(Photos.size() < NUMBER_OF_PHOTOS_PER_PHOTO){
             cout << "Not enough photos to mash, skipping the rest.";
-            delete Index;
 
             break;
         } else if(Photos.size() > NUMBER_OF_PHOTOS_PER_PHOTO){
             cout << "There is something wrong with the mashing program fetching too many photos.";
-            delete Index;
-
+            
             break;
         }
         
@@ -200,11 +188,11 @@ int Mash_Photos(const vector<fs::path> IN_PHOTO_PATHS, vector<vector<fs::path>>&
         if(SET_MODE == VARIABLE_PATH){
             Valid_Photo_Paths_Local.push_back(Photo_Paths);
         }
-        
-        fs::path Out_File = fs::path(OUT_PHOTOS_PATH) / ("Mashed_" + IN_PHOTO_PATHS[Index].filename().string());
+
+        string Batch_Base_Name = "Mashed_" + std::to_string(Count_Mashed + 1);
+        fs::path Out_File = fs::path(OUT_PHOTOS_PATH) / (Batch_Base_Name + ".jpg");
         cv::imwrite(Out_File.string(), Mashed_Photo);
 
-        delete Index;
         Count_Mashed += 1;
     }
 
