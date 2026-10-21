@@ -9,12 +9,6 @@
 #include "../include/src/Create_Labels.hpp"
 #include "../include/src/Mash_Photos.hpp"
 
-// Include utilities.
-#include "../include/src/utils/Get_Exe_Path.hpp"
-#include "../include/src/utils/Load_Photos.hpp"
-#include "../include/src/utils/Read_Txt_File.hpp"
-#include "../include/src/utils/Resize_Photo.hpp"
-
 namespace fs = std::filesystem;
 using cv::Mat;
 using std::cout;
@@ -24,18 +18,6 @@ using std::vector;
 
 namespace photo_masher{
     namespace aliases{
-        vector<string> Read_Txt_File_Alias(const string FILE_PATH){
-            return Read_Txt_File(FILE_PATH);
-        }
-
-        vector<string> Read_Txt_File_Alias(const string FILE_PATH, const Read_Txt_File_Mode TYPE){
-            return Read_Txt_File(FILE_PATH, TYPE);
-        }
-
-        Mat Resize_Photo_Alias(Mat Input_Photo, const int RESOLUTIONS_HORIZONTAL, const int RESOLUTIONS_VERTICAL){
-            return Resize_Photo(Input_Photo, RESOLUTIONS_HORIZONTAL, RESOLUTIONS_VERTICAL);
-        }
-
         int Mash_Photos_Alias(vector<fs::path>& In_Photo_Paths, const string OUT_PHOTOS_PATH, const int RESOLUTIONS_HORIZONTAL, 
                             const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL, const Setting SET_MODE){
             return Mash_Photos(In_Photo_Paths, OUT_PHOTOS_PATH, RESOLUTIONS_HORIZONTAL, 
@@ -43,84 +25,9 @@ namespace photo_masher{
         }
 
         int Create_Labels_Alias(const vector<vector<fs::path>>& VALID_LABEL_PATHS, const string OUT_LABELS_PATH, const int RESOLUTIONS_HORIZONTAL, 
-                                const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL){
-            return Create_Labels(VALID_LABEL_PATHS, OUT_LABELS_PATH, RESOLUTIONS_HORIZONTAL, 
-                                RESOLUTIONS_VERTICAL, PHOTOS_HORIZONTAL, PHOTOS_VERTICAL);
-        }
-    };
-
-    namespace utils{
-        string Get_Exe_Path(){
-            cout << "Getting executable path." << endl;
-            
-            const string EXE_PATH = Get_Executable_Path();
-
-            if(EXE_PATH.empty()){
-                cout << "Failed getting executable path." << endl;
-                return "";
-            }
-
-            cout << "Got executable path." << endl;
-
-            return EXE_PATH;
-        }
-
-        Mat Load_Photos(const string PATH){
-            cout << "Loading photo from " << PATH << "." << endl;
-
-            const Mat PHOTO = Get_Photo(PATH);
-
-            if(!PHOTO.empty()){
-                cout << "Loaded photo from " << PATH << "." << endl;
-                return Mat{};
-            }
-
-            return PHOTO;
-        }
-
-        vector<string> Read_Txt_File(const string PATH){
-            cout << "Getting contents from " << PATH << "." << endl;
-
-            const vector<string> TXT_CONTENTS = aliases::Read_Txt_File_Alias(PATH);
-            
-            if(TXT_CONTENTS.empty()){
-                cout << "Failed to get contents from " << PATH << "." << endl;
-                return {};
-            }
-
-            cout << "Getting contents from " << PATH << " successful." << endl; 
-
-            return TXT_CONTENTS;
-        }
-
-        vector<string> Read_Txt_File(const string PATH, const Read_Txt_File_Mode TYPE){
-            cout << "Getting contents from " << PATH << "." << endl;
-
-            const vector<string> TXT_CONTENTS = aliases::Read_Txt_File_Alias(PATH, TYPE);
-            
-            if(TXT_CONTENTS.empty()){
-                cout << "Failed to get contents from " << PATH << "." << endl;
-                return {};
-            }
-
-            cout << "Getting contents from " << PATH << " successful." << endl; 
-
-            return TXT_CONTENTS;
-        }
-
-        Mat Resize_Photo(Mat Input_Photo, const int RESOLUTIONS_HORIZONTAL, const int RESOLUTIONS_VERTICAL){
-            cout << "Resizing photo." << endl;
-
-            const Mat PHOTO = aliases::Resize_Photo_Alias(Input_Photo, RESOLUTIONS_HORIZONTAL, RESOLUTIONS_VERTICAL);
-
-            if(PHOTO.empty()){
-                cout << "Failed resizing photo." << endl;
-                return Mat{};
-            }
-
-            cout << "Resize photo successful." << endl;
-
-            return PHOTO;
+                                const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL, const Dataset_Format FORMAT){
+            return Create_Labels_Photo_Masher(VALID_LABEL_PATHS, OUT_LABELS_PATH, RESOLUTIONS_HORIZONTAL, 
+                                            RESOLUTIONS_VERTICAL, PHOTOS_HORIZONTAL, PHOTOS_VERTICAL, FORMAT);
         }
     };
 
@@ -140,12 +47,12 @@ namespace photo_masher{
             cout << "Mashing photos successful." << endl;
         }
 
-        void Create_Labels(const vector<vector<fs::path>>& VALID_LABEL_PATHS, const string OUT_LABELS_PATH, const int RESOLUTIONS_HORIZONTAL, 
-                            const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL){
+        void Create_Labels_Photo_Masher(const vector<vector<fs::path>>& VALID_LABEL_PATHS, const string OUT_LABELS_PATH, const int RESOLUTIONS_HORIZONTAL, 
+                            const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL, const Dataset_Format FORMAT){
             cout << "Creating labels." << endl;
 
             int CHECK = aliases::Create_Labels_Alias(VALID_LABEL_PATHS, OUT_LABELS_PATH, RESOLUTIONS_HORIZONTAL, 
-                                                    RESOLUTIONS_VERTICAL, PHOTOS_HORIZONTAL, PHOTOS_VERTICAL);
+                                                    RESOLUTIONS_VERTICAL, PHOTOS_HORIZONTAL, PHOTOS_VERTICAL, FORMAT);
 
             if(CHECK == 1){
                 cout << "Failed to create labels." << endl;

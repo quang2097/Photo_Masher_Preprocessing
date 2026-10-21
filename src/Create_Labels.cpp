@@ -12,7 +12,27 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-int Create_Labels(const vector<vector<fs::path>>& VALID_LABEL_PATHS, const string OUT_LABELS_PATH, const int RESOLUTIONS_HORIZONTAL, 
+typedef enum{
+    COCO_JSON, YOLO26, YOLOv8
+} Dataset_Format;
+
+int Create_Labels_Photo_Masher(const vector<vector<fs::path>>& VALID_LABEL_PATHS, const string OUT_LABELS_PATH, const int RESOLUTIONS_HORIZONTAL, 
+                const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL, const Dataset_Format FORMAT){
+    int Check = 0;
+    // Backwards and forwards compatibility.
+    if(FORMAT == YOLO26){
+        Check = Create_Labels_YOLO26(VALID_LABEL_PATHS, OUT_LABELS_PATH, RESOLUTIONS_HORIZONTAL, 
+                            RESOLUTIONS_VERTICAL, PHOTOS_HORIZONTAL, PHOTOS_VERTICAL);
+    }
+    else if(FORMAT == YOLOv8){
+        Check = Create_Labels_YOLOv8();
+    }
+    else if(FORMAT == COCO_JSON){
+        Check = Create_Labels_COCO_JSON();
+    }
+}
+
+int Create_Labels_YOLO26(const vector<vector<fs::path>>& VALID_LABEL_PATHS, const string OUT_LABELS_PATH, const int RESOLUTIONS_HORIZONTAL, 
                 const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL){
     cout << "Creating labels." << endl;
 
@@ -73,5 +93,13 @@ int Create_Labels(const vector<vector<fs::path>>& VALID_LABEL_PATHS, const strin
         outfile.close();
     }
     
+    return 0;
+}
+
+int Create_Labels_COCO_JSON(){
+    return 0;
+}
+
+int Create_Labels_YOLOv8(){
     return 0;
 }

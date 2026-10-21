@@ -348,7 +348,7 @@ int main(void){
 
     // Create labels
     Check = Create_Labels(Valid_Label_Paths, Out_Labels_Path, Resolution_Horizontal, Resolution_Vertical, 
-                          Number_Of_Photos_Horizontal, Number_Of_Photos_Vertical);
+                          Number_Of_Photos_Horizontal, Number_Of_Photos_Vertical, YOLO26);
 
     if(Check == 1){
         cout << "Failed to create scaled labels." << endl;
