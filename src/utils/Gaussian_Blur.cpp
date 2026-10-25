@@ -6,7 +6,7 @@ using std::cout;
 using std::endl;
 
 namespace utils{
-    Mat Apply_Gaussian_Blur(Mat GRAYED_IMAGE){
+    Mat Apply_Gaussian_Blur(const Mat GRAYED_IMAGE){
         if(GRAYED_IMAGE.empty()){
             cout << "Error: Could not apply Gaussian blur to empty image file." <<  endl;
             return Mat{};
@@ -19,7 +19,7 @@ namespace utils{
         return Blurred_Gray;
     }
 
-    Mat Apply_Gaussian_Blur(Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2){
+    Mat Apply_Gaussian_Blur(const Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2){
         if(GRAYED_IMAGE.empty()){
             cout << "Error: Could not apply Gaussian blur to empty image file." <<  endl;
             return Mat{};

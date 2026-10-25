@@ -6,7 +6,7 @@ using std::endl;
 using cv::Mat;
 
 namespace utils{
-    Mat Saturation_Change(const Mat& INPUT_BGR, float Saturation_Scale = 10){
+    Mat Saturation_Change(const Mat& INPUT_BGR, const float SATURATION_SCALE = 10){
         // Check for empty images.
         if(INPUT_BGR.empty()){
             cout << "Error: Could not add noise to empty image file." <<  endl;
@@ -29,7 +29,7 @@ namespace utils{
         // 3. Scale the Saturation channel
         // convertTo applies a multiplier (alpha) and an optional offset (beta): pixel = pixel * alpha + beta
         // It also automatically clamps values to stay within the valid 0-255 8-bit range.
-        Channels[1].convertTo(Channels[1], -1, Saturation_Scale, 0);
+        Channels[1].convertTo(Channels[1], -1, SATURATION_SCALE, 0);
 
         // 4. Merge Channels back together
         cv::merge(Channels, Hsv_Image);

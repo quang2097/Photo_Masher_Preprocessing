@@ -6,7 +6,7 @@ using std::cout;
 using std::endl;
 
 namespace utils{
-    Mat Brightness_Change(const Mat& INPUT_BGR, int Brightness_Offset = 10) {
+    Mat Brightness_Change(const Mat& INPUT_BGR, const int BRIGHTNESS_OFFSET = 10){
         // Check for empty images.
         if(INPUT_BGR.empty()){
             cout << "Error: Could not apply brightness change to empty image file." <<  endl;
@@ -28,7 +28,7 @@ namespace utils{
 
         // 3. Adjust the Value channel
         // cv::add handles saturating arithmetic automatically (clamps values between 0 and 255)
-        cv::add(Channels[2], Brightness_Offset, Channels[2]);
+        cv::add(Channels[2], BRIGHTNESS_OFFSET, Channels[2]);
 
         // 4. Merge Channels back together
         cv::merge(Channels, Hsv_Image);

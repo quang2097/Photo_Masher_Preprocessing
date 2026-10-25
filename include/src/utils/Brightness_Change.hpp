@@ -5,6 +5,6 @@ using cv::Mat;
 #ifndef BRIGHTNESS_CHANGE
 #define BRIGHTNESS_CHANGE
 namespace utils{
-    Mat Brightness_Change(const Mat& INPUT_BGR, int Brightness_Offset = 10);
+    Mat Brightness_Change(const Mat& INPUT_BGR, const int BRIGHTNESS_OFFSET = 10);
 };
 #endif

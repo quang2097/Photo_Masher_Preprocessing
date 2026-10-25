@@ -6,7 +6,7 @@ using std::endl;
 using cv::Mat;
 
 namespace utils{
-    Mat Hue_Change(const Mat& INPUT_BGR, int Hue_Shift = 18){
+    Mat Hue_Change(const Mat& INPUT_BGR, const int HUE_SHIFT = 18){
         // Check for empty images.
         if(INPUT_BGR.empty()){
             cout << "Error: Could not apply hue change to empty image file." <<  endl;
@@ -25,7 +25,7 @@ namespace utils{
         // Channels[0] is Hue, Channels[1] is Saturation, Channels[2] is Value
         // Note: OpenCV uses 0-179 for Hue because 360 degrees fits into an 8-bit unsigned char (0-255).
         // We use cv::add to handle automatic saturation/wrapping at boundaries (0 and 179).
-        cv::add(Channels[0], Hue_Shift, Channels[0]);
+        cv::add(Channels[0], HUE_SHIFT, Channels[0]);
 
         // 3. Merge the Channels back together
         cv::merge(Channels, Modified_Hsv);

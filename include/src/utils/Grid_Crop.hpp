@@ -12,6 +12,6 @@ namespace utils{
             int y;
         };
     };
-    static std::vector<grid_crop::Tile> Crop_To_Grid(const Mat& INPUT, int Tile_Width, int Tile_Height, int Overlap_X, int Overlap_Y);
+    static std::vector<grid_crop::Tile> Crop_To_Grid(const Mat& INPUT, const int TILE_WIDTH, const int TILE_HEIGHT, const int OVERLAP_X, int OVERLAP_Y);
 };
 #endif
