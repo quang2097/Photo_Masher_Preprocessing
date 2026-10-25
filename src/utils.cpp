@@ -38,7 +38,8 @@ namespace utils{
             return Brightness_Change(INPUT_BGR,Brightness_Offset);
         }
 
-        Mat Apply_Gaussian_Blur_Alias(Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2, const int SIGMA_X, const int SIGMA_Y){
+        Mat Apply_Gaussian_Blur_Alias(Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2, const int SIGMA_X, 
+                                        const int SIGMA_Y){
             
         }
 

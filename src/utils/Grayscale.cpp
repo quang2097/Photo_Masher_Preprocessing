@@ -25,7 +25,8 @@ namespace utils{
         return Grayed_Image;
     }
 
-    Mat Grayscale_With_Gaussian(const Mat IMAGE, int Size1 = 3, int Size2 = 3, int Sigma_X = 0, int Sigma_Y = 0, const grayscale::Grayscale_Setting SETTING) {
+    Mat Grayscale_With_Gaussian(const Mat IMAGE, int Size1 = 3, int Size2 = 3, int Sigma_X = 0, 
+                                int Sigma_Y = 0, const grayscale::Grayscale_Setting SETTING) {
         // Check for empty images.
         if (IMAGE.empty()) {
             cout << "Error: Could not apply grayscale preprocessing to empty image file." <<  endl;
