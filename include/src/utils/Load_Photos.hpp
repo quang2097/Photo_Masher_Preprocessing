@@ -6,5 +6,7 @@ using cv::Mat;
 
 #ifndef LOAD_PHOTOS
 #define LOAD_PHOTOS
-Mat Get_Photo(const string PATH);
+namespace utils{
+    Mat Get_Photo(const string PATH);
+};
 #endif

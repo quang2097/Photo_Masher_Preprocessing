@@ -10,13 +10,38 @@
 #include "../include/src/utils/Load_Photos.hpp"
 #include "../include/src/utils/Read_Txt_File.hpp"
 #include "../include/src/utils/Resize_Photo.hpp"
+#include "../include/src/utils/Add_Noise.hpp"
+#include "../include/src/utils/Auto_Orient.hpp"
+#include "../include/src/utils/Brightness_Change.hpp"
+#include "../include/src/utils/Gaussian_Blur.hpp"
+#include "../include/src/utils/Grayscale.hpp"
+#include "../include/src/utils/Grid_Crop.hpp"
+#include "../include/src/utils/Hue_Change.hpp"
+#include "../include/src/utils/Saturation_Change.hpp"
 
 using std::cout;
 using std::endl;
 using std::string;
+using cv::Mat;
 
 namespace utils{
     namespace aliases{
+        Mat Add_Noise_Alias(const Mat& INPUT, const noise_preprocessor::Noise_Type TYPE, const double PERCENTAGE){
+            return noise_preprocessor::Add_Noise(INPUT, TYPE, PERCENTAGE);
+        }
+
+        Mat Auto_Orient_Alias(const Mat& SRC, int Exif_Orientation = 1){
+            return Auto_Orient(SRC, Exif_Orientation);
+        }
+
+        Mat Brightness_Change_Alias(const Mat& INPUT_BGR, int Brightness_Offset = 10){
+            return Brightness_Change(INPUT_BGR,Brightness_Offset);
+        }
+
+        Mat Apply_Gaussian_Blur_Alias(Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2, const int SIGMA_X, const int SIGMA_Y){
+            
+        }
+
         vector<string> Read_Txt_File_Alias(const string FILE_PATH){
             return Read_Txt_File(FILE_PATH);
         }

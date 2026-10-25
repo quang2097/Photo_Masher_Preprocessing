@@ -10,13 +10,15 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-Mat Get_Photo(const string PATH){
-    const Mat Photo = imread(PATH);
+namespace utils{
+    Mat Get_Photo(const string PATH){
+        const Mat Photo = imread(PATH);
 
-    if(Photo.empty()){
-        cout << "Failed to input file \'" << PATH << "\'." << endl;
-        return Mat{};
+        if(Photo.empty()){
+            cout << "Failed to input file \'" << PATH << "\'." << endl;
+            return Mat{};
+        }
+
+        return Photo;
     }
-
-    return Photo;
-}
+};

@@ -1,15 +1,15 @@
 #include "../../libs/core.hpp"
-#include <random>
 
 using cv::Mat;
 
 #ifndef NOISE_PREPROCESSING
 #define NOISE_PREPROCESSING
-class Noise_Preprocessor {
-public:
-    static Mat applyNoise(const Mat& INPUT, const NoiseTYPE TYPE, const double PERCENTAGE);
-private:
-    static void addSaltAndPepper(Mat& Img, const double PERCENTAGE);
-    static void addGaussian(Mat& Img, double PERCENTAGE);
+namespace utils{
+    namespace noise_preprocessor{
+        enum Noise_Type{
+            SALT_AND_PEPPER, GAUSSIAN
+        };
+    };
+    static Mat Add_Noise(const Mat& INPUT, const noise_preprocessor::Noise_Type TYPE, const double PERCENTAGE);
 };
 #endif
