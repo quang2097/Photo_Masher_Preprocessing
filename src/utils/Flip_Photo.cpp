@@ -30,8 +30,8 @@ namespace utils{
             case flip_photo::VERTICAL:
                 Flip_Code = 0;  // Zero flips around the x-axis
                 break;
-            case flip_photo::BOTH:
-                Flip_Code = -1; // Negative value flips around both axes
+            case flip_photo::UPSIDE_DOWN:
+                Flip_Code = 2; // Negative value flips around both axes
                 break;
         }
 

@@ -9,7 +9,7 @@ namespace utils{
         enum flip_direction{
             HORIZONTAL,
             VERTICAL,
-            BOTH
+            UPSIDE_DOWN
         };
     }
     static Mat flip(const Mat& INPUT, const flip_photo::flip_direction DIRECTION);
