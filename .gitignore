@@ -6,8 +6,15 @@ build*
 
 #dataset
 dataset_download/Corn*
-output
-dataset_download
+/dataset_download
+
+#data
+*.png
+*.csv
+
+#processed data
+Image_output
+Label_output
 
 #uv
 .venv
