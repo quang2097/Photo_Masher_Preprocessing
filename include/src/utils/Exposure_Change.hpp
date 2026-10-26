@@ -1,3 +1,4 @@
+#pragma once
 #include "../../libs/core.hpp"
 
 #ifndef EXPOSURE_CHANGE

@@ -1,3 +1,4 @@
+#pragma once
 #include "../../libs/core.hpp"
 
 #ifndef MOTION_BLUR
