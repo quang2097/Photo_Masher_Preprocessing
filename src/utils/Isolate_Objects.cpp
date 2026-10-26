@@ -26,9 +26,11 @@ namespace utils{
 
         // 2. Iterate through each Line in the YOLO label file
         for (const string& Line : YOLO26_LABELS) {
-            if (Line.empty()) continue;
+            if (Line.empty()){
+                continue;
+            }
 
-            stringstream ss(Line);
+            std::stringstream ss(Line);
             int Class_Id;
             float X_Center, Y_Center, Width, Height;
 
@@ -59,4 +61,4 @@ namespace utils{
 
         return Final_Photo;
     }
-}
+};
