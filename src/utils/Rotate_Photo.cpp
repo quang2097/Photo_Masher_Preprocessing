@@ -16,7 +16,8 @@ namespace utils{
      * @param FILL_COLOR Color used for background padding if canvas expands (default is black)
      * @return Processed Mat
      */
-    static Mat rotate(const Mat& INPUT, const double ANGLE_DEGREES, const bool EXPAND_CANVAS = true, const cv::Scalar& FILL_COLOR = cv::Scalar(0, 0, 0)) {
+    static cv::Mat rotate(const cv::Mat& INPUT, const double ANGLE_DEGREES, const bool EXPAND_CANVAS = true, 
+                        const cv::Scalar& FILL_COLOR = cv::Scalar(0, 0, 0)) {
         if (INPUT.empty()) {
             cout << "Cannot rotate an empty photo." << endl;
             return Mat{};

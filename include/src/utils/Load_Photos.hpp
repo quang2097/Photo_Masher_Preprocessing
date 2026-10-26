@@ -1,12 +1,9 @@
 #include "../../libs/core.hpp"
 #include <string>
 
-using std::string;
-using cv::Mat;
-
 #ifndef LOAD_PHOTOS
 #define LOAD_PHOTOS
 namespace utils{
-    Mat Get_Photo(const string PATH);
+    cv::Mat Get_Photo(const std::string PATH);
 };
 #endif

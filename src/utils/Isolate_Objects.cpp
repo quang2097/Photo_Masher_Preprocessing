@@ -12,7 +12,7 @@ using std::vector;
 using std::string;
 
 namespace utils{
-    Mat Isolate_YOLO_Objects(const Mat INPUT_PHOTO, const vector<string>& YOLO26_LABELS) {
+    cv::Mat Isolate_YOLO_Objects(const cv::Mat INPUT_PHOTO, const std::vector<std::string>& YOLO26_LABELS) {
         if (INPUT_PHOTO.empty()) {
             cout << "Found no objects for this photo. Continuing." << endl;
             return INPUT_PHOTO;

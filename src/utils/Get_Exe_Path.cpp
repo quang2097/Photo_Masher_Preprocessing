@@ -15,7 +15,7 @@ using std::runtime_error;
 using std::vector;
 
 namespace utils{
-    string Get_Executable_Path(){
+    std::string Get_Executable_Path(){
         vector<char> Buffer(1024);
         uint32_t size = Buffer.size();
 
@@ -48,7 +48,7 @@ namespace utils{
     }
 
     //find the path of the executable file
-    string Get_Executable_Directory(){
+    std::string Get_Executable_Directory(){
         return std::filesystem::path(Get_Executable_Path()).parent_path().string();
     }
 };

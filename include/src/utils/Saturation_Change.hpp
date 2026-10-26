@@ -1,11 +1,8 @@
 #include "../../libs/core.hpp"
-#include <iostream>
-
-using cv::Mat;
 
 #ifndef SATURATION_CHANGE
 #define SATURATION_CHANGE
 namespace utils{
-    Mat Saturation_Change(const Mat& INPUT_BGR, const float SATURATION_SCALE = 10);
+    cv::Mat Saturation_Change(const cv::Mat& INPUT_BGR, const float SATURATION_SCALE = 10);
 };
 #endif

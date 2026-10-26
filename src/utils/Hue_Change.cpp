@@ -6,7 +6,7 @@ using std::endl;
 using cv::Mat;
 
 namespace utils{
-    Mat Hue_Change(const Mat& INPUT_BGR, const int HUE_SHIFT = 18){
+    cv::Mat Hue_Change(const cv::Mat& INPUT_BGR, const int HUE_SHIFT = 18){
         // Check for empty images.
         if(INPUT_BGR.empty()){
             cout << "Error: Could not apply hue change to empty image file." <<  endl;

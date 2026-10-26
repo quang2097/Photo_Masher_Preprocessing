@@ -11,7 +11,7 @@ using std::cout;
 using std::endl;
 
 namespace utils{
-    Mat Get_Photo(const string PATH){
+    cv::Mat Get_Photo(const std::string PATH){
         const Mat Photo = imread(PATH);
 
         if(Photo.empty()){

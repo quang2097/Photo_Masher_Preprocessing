@@ -6,7 +6,7 @@ using std::cout;
 using std::endl;
 
 namespace utils{
-    Mat Apply_Gaussian_Blur(const Mat GRAYED_IMAGE){
+    cv::Mat Apply_Gaussian_Blur(const cv::Mat GRAYED_IMAGE){
         if(GRAYED_IMAGE.empty()){
             cout << "Error: Could not apply Gaussian blur to empty image file." <<  endl;
             return Mat{};
@@ -19,7 +19,7 @@ namespace utils{
         return Blurred_Gray;
     }
 
-    Mat Apply_Gaussian_Blur(const Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2){
+    cv::Mat Apply_Gaussian_Blur(const cv::Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2){
         if(GRAYED_IMAGE.empty()){
             cout << "Error: Could not apply Gaussian blur to empty image file." <<  endl;
             return Mat{};
@@ -32,7 +32,7 @@ namespace utils{
         return Blurred_Gray;
     }
 
-    Mat Apply_Gaussian_Blur(Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2, const int SIGMA_X){
+    cv::Mat Apply_Gaussian_Blur(cv::Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2, const int SIGMA_X){
         if(GRAYED_IMAGE.empty()){
             cout << "Error: Could not apply Gaussian blur to empty image file." <<  endl;
             return Mat{};
@@ -45,7 +45,7 @@ namespace utils{
         return Blurred_Gray;
     }
 
-    Mat Apply_Gaussian_Blur(Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2, const int SIGMA_X, const int SIGMA_Y){
+    cv::Mat Apply_Gaussian_Blur(cv::Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2, const int SIGMA_X, const int SIGMA_Y){
         // Check for empty images.
         if(GRAYED_IMAGE.empty()){
             cout << "Error: Could not apply Gaussian blur to empty image file." <<  endl;

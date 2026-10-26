@@ -22,7 +22,7 @@ namespace utils{
      *                   For Gaussian: intensity PERCENTAGE relative to max Pixel value 255 (0.0 to 100.0).
      * @return Processed Mat
      */
-    static Mat Add_Noise(const Mat& INPUT, const noise_preprocessor::Noise_Type TYPE, const double PERCENTAGE){
+    static cv::Mat Add_Noise(const cv::Mat& INPUT, const noise_preprocessor::Noise_Type TYPE, const double PERCENTAGE){
         if(PERCENTAGE <= 0){
             cout << "Add noise percentage was set to 0%. Failed to process photo." << endl;
             return Mat{};

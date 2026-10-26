@@ -20,7 +20,7 @@ namespace utils{
         }
     }
 
-    vector<string> Read_Txt_File(const string FILE_PATH){
+    std::vector<std::string> Read_Txt_File(const std::string FILE_PATH){
         vector<string> Txt_Lines;
         fstream file(FILE_PATH);
 
@@ -39,7 +39,7 @@ namespace utils{
         return Txt_Lines;
     }
 
-    vector<string> Read_Txt_File(const string FILE_PATH, const read_txt_file::Read_Txt_File_Mode TYPE){
+    std::vector<std::string> Read_Txt_File(const std::string FILE_PATH, const read_txt_file::Read_Txt_File_Mode TYPE){
         vector<string> Txt_Lines;
         fstream file(FILE_PATH);
 

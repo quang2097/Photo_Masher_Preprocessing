@@ -15,8 +15,10 @@ using std::cout;
 using std::endl;
 
 namespace utils{
-    int Create_Labels_Photo_Masher(const vector<vector<fs::path>>& VALID_LABEL_PATHS, const string OUT_LABELS_PATH, const int RESOLUTIONS_HORIZONTAL, 
-                    const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL, const create_labels::Dataset_Format FORMAT){
+    int Create_Labels_Photo_Masher(const std::vector<std::vector<std::filesystem::path>>& VALID_LABEL_PATHS, 
+                                    const std::string OUT_LABELS_PATH, const int RESOLUTIONS_HORIZONTAL, 
+                                    const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL,
+                                    const int PHOTOS_VERTICAL, const create_labels::Dataset_Format FORMAT){
         int Check = 0;
         // Backwards and forwards compatibility.
         if(FORMAT == create_labels::YOLO26){
@@ -38,8 +40,9 @@ namespace utils{
         return 0;
     }
 
-    int Create_Labels_YOLO26(const vector<vector<fs::path>>& VALID_LABEL_PATHS, const string OUT_LABELS_PATH, const int RESOLUTIONS_HORIZONTAL, 
-                    const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL){
+    int Create_Labels_YOLO26(const std::vector<std::vector<std::filesystem::path>>& VALID_LABEL_PATHS, 
+                            const std::string OUT_LABELS_PATH, const int RESOLUTIONS_HORIZONTAL, 
+                            const int RESOLUTIONS_VERTICAL, const int PHOTOS_HORIZONTAL, const int PHOTOS_VERTICAL){
         cout << "Creating labels." << endl;
 
         if(VALID_LABEL_PATHS.empty() || VALID_LABEL_PATHS.front().empty()){

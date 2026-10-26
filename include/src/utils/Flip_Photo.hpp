@@ -1,7 +1,5 @@
 #include "../../libs/core.hpp"
 
-using cv::Mat;
-
 #ifndef FLIP_PHOTO
 #define FLIP_PHOTO
 namespace utils{
@@ -12,6 +10,6 @@ namespace utils{
             UPSIDE_DOWN
         };
     }
-    static Mat flip(const Mat& INPUT, const flip_photo::flip_direction DIRECTION);
+    static cv::Mat flip(const cv::Mat& INPUT, const flip_photo::flip_direction DIRECTION);
 };
 #endif

@@ -8,7 +8,7 @@ using std::endl;
 using std::min;
 
 namespace utils{
-    Mat Resize_Photo(const Mat Input_Photo, const int RESOLUTIONS_HORIZONTAL, const int RESOLUTIONS_VERTICAL){
+    cv::Mat Resize_Photo(const cv::Mat Input_Photo, const int RESOLUTIONS_HORIZONTAL, const int RESOLUTIONS_VERTICAL){
         if (Input_Photo.empty()) {
             cout << "Entered empty photo. Abort resizing." << endl; 
 

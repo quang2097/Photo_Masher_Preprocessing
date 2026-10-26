@@ -6,7 +6,7 @@ using std::endl;
 using cv::Mat;
 
 namespace utils{
-    Mat Saturation_Change(const Mat& INPUT_BGR, const float SATURATION_SCALE = 10){
+    cv::Mat Saturation_Change(const cv::Mat& INPUT_BGR, const float SATURATION_SCALE = 10){
         // Check for empty images.
         if(INPUT_BGR.empty()){
             cout << "Error: Could not add noise to empty image file." <<  endl;

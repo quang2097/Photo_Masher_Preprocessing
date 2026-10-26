@@ -15,7 +15,7 @@ namespace utils{
      * @param CROP_HEIGHT Height of the crop window in pixels
      * @return Cropped Mat
      */
-    static Mat cropByPixels(const Mat& INPUT, const int CROP_WIDTH, const int CROP_HEIGHT) {
+    static cv::Mat cropByPixels(const cv::Mat& INPUT, const int CROP_WIDTH, const int CROP_HEIGHT) {
         if (INPUT.empty()) {
             cout << "Cannot apply random crop to emty Photo." << endl; 
             return Mat{};
@@ -51,7 +51,7 @@ namespace utils{
      * @param PERCENTAGE PERCENTAGE of the original size (e.g., 50.0 means 50% of width and height)
      * @return Cropped Mat
      */
-    static Mat cropByPERCENTAGE(const Mat& INPUT, const double PERCENTAGE) {
+    static cv::Mat cropByPERCENTAGE(const cv::Mat& INPUT, const double PERCENTAGE) {
         if (INPUT.empty()) {
             cout << "Cannot apply random crop to empty Photo." << endl;
             return Mat{};

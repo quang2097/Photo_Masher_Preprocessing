@@ -19,7 +19,7 @@ namespace utils{
      * @param OVERLAP_Y Number of overlapping pixels vertically
      * @return Vector of Tile structures
      */
-    static std::vector<grid_crop::Tile> Crop_To_Grid(const Mat& INPUT, const int TILE_WIDTH, const int TILE_HEIGHT, 
+    static std::vector<grid_crop::Tile> Crop_To_Grid(const cv::Mat& INPUT, const int TILE_WIDTH, const int TILE_HEIGHT, 
                                                     const int OVERLAP_X, int OVERLAP_Y){
         std::vector<grid_crop::Tile> Tiles;
 

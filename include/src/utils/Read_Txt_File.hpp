@@ -1,9 +1,4 @@
-#include <fstream>
-#include <vector>
 #include <string>
-
-using std::vector;
-using std::string;
 
 #ifndef READ_TXT_FILE
 #define READ_TXT_FILE
@@ -14,7 +9,7 @@ namespace utils{
         };
     };
 
-    vector<string> Read_Txt_File(const string FILE_PATH);
-    vector<string> Read_Txt_File(const string FILE_PATH, const read_txt_file::Read_Txt_File_Mode TYPE);
+    std::vector<std::string> Read_Txt_File(const std::string FILE_PATH);
+    std::vector<std::string> Read_Txt_File(const std::string FILE_PATH, const read_txt_file::Read_Txt_File_Mode TYPE);
 };
 #endif

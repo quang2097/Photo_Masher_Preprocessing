@@ -7,7 +7,7 @@ using std::endl;
 
 namespace utils{
     // Function to apply auto-orientation based on the EXIF orientation tag (1-8)
-    Mat Auto_Orient(const Mat& SRC, const int EXIF_ORIENTATION = 1){
+    cv::Mat Auto_Orient(const cv::Mat& SRC, const int EXIF_ORIENTATION = 1){
         // Check for empty images.
         if(SRC.empty()){
             cout << "Error: Could not apply auto orient to empty image file." <<  endl;

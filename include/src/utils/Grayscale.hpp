@@ -1,7 +1,5 @@
 #include "../../libs/core.hpp"
 
-using cv::Mat;
-
 #ifndef GRAYSCALE
 #define GRAYSCALE
 namespace utils{
@@ -11,7 +9,8 @@ namespace utils{
         };
     };
 
-    Mat Grayscale(const Mat IMAGE);
-    Mat Grayscale_With_Gaussian(const Mat IMAGE, int Size1 = 3, int Size2 = 3, int Sigma_X = 0, int Sigma_Y = 0, const grayscale::Grayscale_Setting SETTING);
+    cv::Mat Grayscale(const cv::Mat IMAGE);
+    cv::Mat Grayscale_With_Gaussian(const cv::Mat IMAGE, int Size1 = 3, int Size2 = 3, int Sigma_X = 0, int Sigma_Y = 0, 
+                                    const grayscale::Grayscale_Setting SETTING);
 };
 #endif
