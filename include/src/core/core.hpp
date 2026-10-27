@@ -1,0 +1,29 @@
+#pragma once
+
+#ifndef PHOTO_MASHER_CORE
+#define PHOTO_MASHER_CORE
+#include "../utils/Add_Blur.hpp"
+#include "../utils/Add_Noise.hpp"
+#include "../utils/Auto_Orient.hpp"
+#include "../utils/Brightness_Change.hpp"
+#include "../utils/Camera_Gain.hpp"
+#include "../utils/Create_Labels.hpp"
+#include "../utils/Cutout.hpp"
+#include "../utils/Exposure_Change.hpp"
+#include "../utils/Flip_Photo.hpp"
+#include "../utils/Gaussian_Blur.hpp"
+#include "../utils/Get_Exe_Path.hpp"
+#include "../utils/Grayscale.hpp"
+#include "../utils/Grid_Crop.hpp"
+#include "../utils/Hue_Change.hpp"
+#include "../utils/Isolate_Objects.hpp"
+#include "../utils/Load_Photos.hpp"
+#include "../utils/Moseic.hpp"
+#include "../utils/Motion_Blur.hpp"
+#include "../utils/Random_Crop.hpp"
+#include "../utils/Read_Txt_File.hpp"
+#include "../utils/Resize_Photo.hpp"
+#include "../utils/Rotate_Photo.hpp"
+#include "../utils/Saturation_Change.hpp"
+#include "../utils/Shear_Photo.hpp"
+#endif
