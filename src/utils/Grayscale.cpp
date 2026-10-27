@@ -1,8 +1,8 @@
-#include "../../include/libs/core.hpp"
+#include "libs/opencv.hpp"
 #include <iostream>
-#include "../../include/src/utils/Gaussian_Blur.hpp"
+#include "utils/Gaussian_Blur.hpp"
 
-#include "../../include/src/utils/Grayscale.hpp"
+#include "utils/Grayscale.hpp"
 
 using cv::Mat;
 using std::cout;
@@ -26,7 +26,7 @@ namespace utils{
     }
 
     cv::Mat Grayscale_With_Gaussian(const cv::Mat IMAGE, int Size1 = 3, int Size2 = 3, int Sigma_X = 0, 
-                                int Sigma_Y = 0, const grayscale::Grayscale_Setting SETTING) {
+                                    int Sigma_Y = 0, const grayscale::Grayscale_Setting SETTING) {
         // Check for empty images.
         if (IMAGE.empty()) {
             cout << "Error: Could not apply grayscale preprocessing to empty image file." <<  endl;

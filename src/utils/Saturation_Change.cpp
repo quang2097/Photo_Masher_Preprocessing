@@ -1,4 +1,4 @@
-#include "../../include/libs/core.hpp"
+#include "libs/opencv.hpp"
 #include <iostream>
 
 using std::cout;

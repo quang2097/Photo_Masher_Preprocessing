@@ -1,10 +1,9 @@
 #pragma once
+#ifndef CREATE_LABELS
+#define CREATE_LABELS
 #include <string>
 #include <filesystem>
 #include <vector>
-
-#ifndef CREATE_LABELS
-#define CREATE_LABELS
 namespace utils{
     namespace create_labels{
         enum Dataset_Format{

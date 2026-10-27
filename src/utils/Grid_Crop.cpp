@@ -1,8 +1,8 @@
-#include "../../include/libs/core.hpp"
+#include "libs/opencv.hpp"
 #include <vector>
 #include <iostream>
 
-#include "../../include/src/utils/Grid_Crop.hpp"
+#include "utils/Grid_Crop.hpp"
 
 using std::cout;
 using std::endl;

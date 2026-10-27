@@ -1,8 +1,7 @@
 #pragma once
-#include "../../libs/core.hpp"
-
 #ifndef GRAYSCALE
 #define GRAYSCALE
+#include "libs/opencv.hpp"
 namespace utils{
     namespace grayscale{
         enum Grayscale_Setting{

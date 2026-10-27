@@ -1,25 +1,16 @@
-#include "../../include/src/utils/Load_Photos.hpp"
-#include "../../include/src/utils/Resize_Photo.hpp"
-#include "../../include/libs/core.hpp"
-#include <filesystem>
-#include <string>
-#include <iterator>
-#include <execution>
+#include "utils/Resize_Photo.hpp"
+#include "libs/opencv.hpp"
 #include <vector>
 #include <iostream>
 #include <algorithm>
 
-#include "../../include/src/utils/Mash_Photos.hpp"
+#include "utils/Mash_Photos.hpp"
 
-namespace fs = std::filesystem;
-using std::string;
 using std::vector;
 using std::cout;
 using std::endl;
 using cv::Mat;
-using std::floor;
 using std::round;
-using std::ceil;
 
 namespace utils{
     cv::Mat Mash_Photos(std::vector<cv::Mat> Inputs, const int RESOLUTIONS_HORIZONTAL, const int RESOLUTIONS_VERTICAL, 

@@ -4,9 +4,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "../../include/src/utils/Read_Txt_File.hpp"
+#include "utils/Read_Txt_File.hpp"
 
-#include "../../include/src/utils/Create_Labels.hpp";
+#include "utils/Create_Labels.hpp"
 
 namespace fs = std::filesystem;
 using std::string;

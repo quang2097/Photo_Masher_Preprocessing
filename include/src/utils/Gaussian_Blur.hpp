@@ -1,8 +1,7 @@
 #pragma once
-#include "../../libs/core.hpp"
-
 #ifndef GAUSSIAN_BLUR
 #define GAUSSIAN_BLUR
+#include "libs/opencv.hpp"
 namespace utils{
     cv::Mat Apply_Gaussian_Blur(const cv::Mat GRAYED_IMAGE);
     cv::Mat Apply_Gaussian_Blur(const cv::Mat GRAYED_IMAGE, const int SIZE1, const int SIZE2);

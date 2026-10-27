@@ -1,3 +1,3 @@
-#include "../../include/libs/GuiLite.hpp"
-#include "../../include/libs/imgui.hpp"
+#include "libs/GuiLite.hpp"
+#include "libs/imgui.hpp"
 

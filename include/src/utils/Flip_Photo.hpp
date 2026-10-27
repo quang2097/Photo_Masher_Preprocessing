@@ -1,8 +1,7 @@
 #pragma once
-#include "../../libs/core.hpp"
-
 #ifndef FLIP_PHOTO
 #define FLIP_PHOTO
+#include "libs/opencv.hpp"
 namespace utils{
     namespace flip_photo{
         enum flip_direction{

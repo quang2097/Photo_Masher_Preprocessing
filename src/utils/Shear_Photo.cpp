@@ -1,4 +1,4 @@
-#include "../../include/libs/core.hpp"
+#include "libs/opencv.hpp"
 #include <vector>
 #include <iostream>
 
@@ -17,7 +17,7 @@ namespace utils{
      * @param Fill_Color Color used for background padding of expanded areas (default black)
      * @return Processed cv::Mat
      */
-    static cv::Mat applyShear(const cv::Mat& INPUT, double Shear_X, double Shear_Y, const cv::Scalar& Fill_Color = cv::Scalar(0, 0, 0)) {
+    static cv::Mat Shear_Photo(const cv::Mat& INPUT, double Shear_X, double Shear_Y, const cv::Scalar& Fill_Color = cv::Scalar(0, 0, 0)) {
         if (INPUT.empty()) {
             cout << "Cannot apply shear preprocessing to an empty photo." << endl;
             return Mat{};

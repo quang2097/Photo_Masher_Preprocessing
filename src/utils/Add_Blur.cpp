@@ -1,7 +1,6 @@
-#include "../../include/libs/core.hpp"
 #include <iostream>
 
-#include "../../include/src/utils/Add_Blur.hpp"
+#include "utils/Add_Blur.hpp"
 
 using cv::Mat;
 using std::endl;

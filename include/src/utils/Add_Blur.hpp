@@ -1,8 +1,7 @@
 #pragma once
-#include "../../libs/core.hpp"
-
 #ifndef ADD_BLUR
 #define ADD_BLUR
+#include "libs/opencv.hpp"
 namespace utils{
     namespace add_blur{
         enum blur_type {

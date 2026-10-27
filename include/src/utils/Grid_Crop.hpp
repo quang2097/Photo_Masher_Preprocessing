@@ -1,8 +1,7 @@
 #pragma once
-#include "../../libs/core.hpp"
-
 #ifndef GRID_CROP
 #define GRID_CROP
+#include "libs/opencv.hpp"
 namespace utils{
     namespace grid_crop{
         struct Tile{

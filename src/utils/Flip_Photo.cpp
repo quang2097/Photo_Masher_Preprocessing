@@ -1,7 +1,7 @@
-#include "../../include/libs/core.hpp"
+#include "libs/opencv.hpp"
 #include <iostream>
 
-#include "../../include/src/utils/Flip_Photo.hpp"
+#include "utils/Flip_Photo.hpp"
 
 using cv::Mat;
 using std::endl;

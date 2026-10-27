@@ -1,8 +1,7 @@
 #pragma once
-#include "../../libs/core.hpp"
-
 #ifndef NOISE_PREPROCESSING
 #define NOISE_PREPROCESSING
+#include "libs/opencv.hpp"
 namespace utils{
     namespace noise_preprocessor{
         enum Noise_Type{

@@ -1,8 +1,7 @@
 #pragma once
-#include "../../libs/core.hpp"
-
 #ifndef CUTOUT
 #define CUTOUT
+#include "libs/opencv.hpp"
 namespace utils{
     static cv::Mat Apply_Cutout_Pixels(const cv::Mat& INPUT, const int CUTOUT_WIDTH, const int CUTOUT_HEIGHT, 
                                     const cv::Scalar& Fill_Color = cv::Scalar(0, 0, 0));
