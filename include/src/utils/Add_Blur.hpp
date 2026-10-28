@@ -5,9 +5,7 @@
 namespace utils{
     namespace add_blur{
         enum blur_type {
-            GAUSSIAN,
-            BOX,
-            MEDIAN
+            GAUSSIAN, BOX, MEDIAN
         };
     };
     static cv::Mat Add_Blur(const cv::Mat& INPUT, const add_blur::blur_type TYPE, int Kernel_Size);

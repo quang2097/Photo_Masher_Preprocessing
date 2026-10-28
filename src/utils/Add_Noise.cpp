@@ -60,20 +60,24 @@ namespace utils{
         std::uniform_int_distribution<> Dis_Col(0, Img.cols - 1);
         std::uniform_int_distribution<> Dis_Val(0, 1);
 
+        int *c = new int(0);
+        int *r = new int(0);
         for (int i = 0; i < Num_Pixels; ++i) {
-            int r = Dis_Row(Gen);
-            int c = Dis_Col(Gen);
+            *r = Dis_Row(Gen);
+            *c = Dis_Col(Gen);
             uchar Noise_Val = (Dis_Val(Gen) == 0) ? 0 : 255;
 
             if (Img.channels() == 1) {
-                Img.at<uchar>(r, c) = Noise_Val;
+                Img.at<uchar>(*r, *c) = Noise_Val;
             } else if (Img.channels() == 3) {
-                cv::Vec3b& Pixel = Img.at<cv::Vec3b>(r, c);
+                cv::Vec3b& Pixel = Img.at<cv::Vec3b>(*r, *c);
                 Pixel[0] = Noise_Val;
                 Pixel[1] = Noise_Val;
                 Pixel[2] = Noise_Val;
             }
         }
+        delete c;
+        delete r;
     }
 
     static void Add_Gaussian(Mat& Img, const double PERCENTAGE) {
