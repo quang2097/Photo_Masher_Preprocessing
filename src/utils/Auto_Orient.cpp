@@ -10,7 +10,7 @@ namespace utils{
     cv::Mat Auto_Orient(const cv::Mat& SRC, const int EXIF_ORIENTATION = 1){
         // Check for empty images.
         if(SRC.empty()){
-            cout << "Error: Could not apply auto orient to empty image file." <<  endl;
+            cout << "\tError: Could not apply auto orient to empty image file." <<  endl;
             return Mat{};
         }
 

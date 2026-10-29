@@ -24,7 +24,7 @@ namespace utils{
         std::vector<grid_crop::Tile> Tiles;
 
         if (INPUT.empty() || TILE_WIDTH <= 0 || TILE_HEIGHT <= 0){
-            cout << "Error: Invalid INPUT Image or tile dimensions!" << endl;
+            cout << "\tError: Invalid INPUT Image or tile dimensions!" << endl;
             return Tiles;
         }
 
@@ -32,7 +32,7 @@ namespace utils{
         int Step_Y = TILE_HEIGHT - OVERLAP_Y;
 
         if (Step_X <= 0 || Step_Y <= 0){
-            cout << "Error: Overlap must be strictly smaller than the tile dimensions!" << endl;
+            cout << "\tError: Overlap must be strictly smaller than the tile dimensions!" << endl;
             return Tiles;
         }
 
@@ -40,7 +40,7 @@ namespace utils{
         int Img_H = INPUT.rows;
 
         if (Img_W < TILE_WIDTH || Img_H < TILE_HEIGHT){
-            cout << "Error: Image dimensions are smaller than the requested tile size!" << endl;
+            cout << "\tError: Image dimensions are smaller than the requested tile size!" << endl;
             return Tiles;
         }
 

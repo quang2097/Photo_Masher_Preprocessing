@@ -18,19 +18,19 @@ namespace utils{
 
     static cv::Mat Add_Blur(const cv::Mat& INPUT, const add_blur::blur_type TYPE, int Kernel_Size) {
         if (INPUT.empty()) {
-            cout << "Cannot apply blur preprocessing to an empty photo." << endl;
+            cout << "\tCannot apply blur preprocessing to an empty photo." << endl;
             return Mat{};
         }
 
         if (Kernel_Size <= 0) {
-            cout << "Warning: Kernel size must be greater than 0. Returning original image." << endl;
+            cout << "\tWarning: Kernel size must be greater than 0. Returning original image." << endl;
             return INPUT.clone();
         }
 
         // Kernel size must be odd for Gaussian and Median blur
         if (Kernel_Size % 2 == 0) {
             Kernel_Size += 1;
-            cout << "Warning: Kernel size must be an odd number. Adjusted to " << Kernel_Size << "." << endl;
+            cout << "\tWarning: Kernel size must be an odd number. Adjusted to " << Kernel_Size << "." << endl;
         }
 
         Mat Output;

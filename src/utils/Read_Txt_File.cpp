@@ -25,7 +25,7 @@ namespace utils{
         fstream file(FILE_PATH);
 
         if(!file.is_open()){
-            cout << "Failed to find \'" << FILE_PATH << "\'" << endl;
+            cout << "\tFailed to find \'" << FILE_PATH << "\'" << endl;
             return {};
         }
 
@@ -44,7 +44,7 @@ namespace utils{
         fstream file(FILE_PATH);
 
         if(!file.is_open()){
-            cout << "Failed to open \'" << FILE_PATH << "\'" << endl;
+            cout << "\tFailed to open \'" << FILE_PATH << "\'" << endl;
             return {};
         }
 

@@ -24,13 +24,13 @@ namespace utils{
      */
     static cv::Mat Add_Noise(const cv::Mat& INPUT, const noise_preprocessor::Noise_Type TYPE, const double PERCENTAGE){
         if(PERCENTAGE <= 0){
-            cout << "Add noise percentage was set to 0%. Failed to process photo." << endl;
+            cout << "\tAdd noise percentage was set to 0%. Failed to process photo." << endl;
             return Mat{};
         }
 
         // Check for empty images.
         if(INPUT.empty()){
-            cout << "Error: Could not add noise to empty image file." <<  endl;
+            cout << "\tError: Could not add noise to empty image file." <<  endl;
             return Mat{};
         }
 

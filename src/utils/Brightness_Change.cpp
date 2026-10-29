@@ -9,7 +9,7 @@ namespace utils{
     cv::Mat Brightness_Change(const cv::Mat& INPUT_BGR, const int BRIGHTNESS_OFFSET = 10){
         // Check for empty images.
         if(INPUT_BGR.empty()){
-            cout << "Error: Could not apply brightness change to empty image file." <<  endl;
+            cout << "\tError: Could not apply brightness change to empty image file." <<  endl;
             return Mat{};
         }
 

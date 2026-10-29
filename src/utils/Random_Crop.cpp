@@ -17,17 +17,17 @@ namespace utils{
      */
     static cv::Mat cropByPixels(const cv::Mat& INPUT, const int CROP_WIDTH, const int CROP_HEIGHT) {
         if (INPUT.empty()) {
-            cout << "Cannot apply random crop to emty Photo." << endl; 
+            cout << "\tCannot apply random crop to emty Photo." << endl; 
             return Mat{};
         }
 
         if (CROP_WIDTH <= 0 || CROP_HEIGHT <= 0) {
-            cout << "Cannot apply random crop with width " << CROP_WIDTH << " and height " << CROP_HEIGHT << endl; 
+            cout << "\tCannot apply random crop with width " << CROP_WIDTH << " and height " << CROP_HEIGHT << endl; 
             return Mat{};
         }
 
         if (CROP_WIDTH > INPUT.cols || CROP_HEIGHT > INPUT.rows) {
-            cout << "Cannot apply random crop with width and/or height larger than the photo dimensions." << endl;
+            cout << "\tCannot apply random crop with width and/or height larger than the photo dimensions." << endl;
             return Mat{};
         }
 
@@ -53,12 +53,12 @@ namespace utils{
      */
     static cv::Mat cropByPERCENTAGE(const cv::Mat& INPUT, const double PERCENTAGE) {
         if (INPUT.empty()) {
-            cout << "Cannot apply random crop to empty Photo." << endl;
+            cout << "\tCannot apply random crop to empty Photo." << endl;
             return Mat{};
         }
 
         if (PERCENTAGE <= 0.0 || PERCENTAGE > 100.0) {
-            cout << "Cannot apply random crop to photo with a percentage value of " << PERCENTAGE << endl;
+            cout << "\tCannot apply random crop to photo with a percentage value of " << PERCENTAGE << endl;
             return Mat{};
         }
 

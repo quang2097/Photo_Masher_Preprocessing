@@ -18,7 +18,7 @@ namespace utils{
     static cv::Mat flip(const cv::Mat& INPUT, const flip_photo::flip_direction DIRECTION){
         Mat Output;
         if (INPUT.empty()) {
-            cout << "Can't apply flip photo preprocessing for an empty photo." << endl;
+            cout << "\tCan't apply flip photo preprocessing for an empty photo." << endl;
             return Mat{};
         }
 

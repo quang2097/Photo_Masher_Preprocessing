@@ -12,7 +12,7 @@ namespace utils{
     cv::Mat Grayscale(const cv::Mat IMAGE) {
         // Check for empty images.
         if (IMAGE.empty()) {
-            cout << "Error: Could not apply grayscale preprocessing to empty image file." <<  endl;
+            cout << "\tError: Could not apply grayscale preprocessing to empty image file." <<  endl;
             return Mat{};
         }
 
@@ -20,7 +20,7 @@ namespace utils{
         cv::Mat Grayed_Image;
         cv::cvtColor(IMAGE, Grayed_Image, cv::COLOR_BGR2GRAY);
 
-        cout << "Applied grayscale preprocessing to image file." << endl;
+        cout << "\tApplied grayscale preprocessing to image file." << endl;
 
         return Grayed_Image;
     }
@@ -29,7 +29,7 @@ namespace utils{
                                     int Sigma_Y = 0, const grayscale::Grayscale_Setting SETTING) {
         // Check for empty images.
         if (IMAGE.empty()) {
-            cout << "Error: Could not apply grayscale preprocessing to empty image file." <<  endl;
+            cout << "\tError: Could not apply grayscale preprocessing to empty image file." <<  endl;
             return Mat{};
         }
 
@@ -37,7 +37,7 @@ namespace utils{
         cv::Mat Grayed_Image;
         cv::cvtColor(IMAGE, Grayed_Image, cv::COLOR_BGR2GRAY);
 
-        cout << "Applied grayscale preprocessing to image file." << endl;
+        cout << "\tApplied grayscale preprocessing to image file." << endl;
 
         if(SETTING == grayscale::GAUSSIAN_DEFAULT){
             Grayed_Image = Apply_Gaussian_Blur(Grayed_Image);
@@ -46,7 +46,7 @@ namespace utils{
             Grayed_Image = Apply_Gaussian_Blur(Grayed_Image, Size1, Size2, Sigma_X, Sigma_Y);
         }
 
-        cout << "Applied grayscale preprocessing to image file." << endl;
+        cout << "\tApplied grayscale preprocessing to image file." << endl;
 
         return Grayed_Image;
     }

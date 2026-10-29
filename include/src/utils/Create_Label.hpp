@@ -6,6 +6,10 @@
 #include <vector>
 namespace utils{
     namespace create_label{
+        enum Create_Label_Type{
+            ROTATE_PHOTO, FLIP_PHOTO
+        };
+
         enum Dataset_Format{
             COCO, COCO_Segmentation, COCO_MMDetection, CreateML, PaliGemma, 
             Florence_2_Object_Detection, YOLO26, YOLOv8, YOLOv5, SAM_2,
@@ -15,12 +19,12 @@ namespace utils{
             Tensorflow_TFRecord, Server_Benchmark, Multi_Label_Classification, OpenAI_Clip_Classification
         };
 
-        struct pair{
+        struct Pair{
             int first;
             int second;
 
             // Constructor
-            pair(const int FIRST, const int SECOND){
+            Pair(const int FIRST, const int SECOND){
                 first = FIRST;
                 second = SECOND;
             }
@@ -29,8 +33,8 @@ namespace utils{
 
     namespace resize_photo{
         std::vector<std::string> create_label(const std::vector<std::string> INPUT, 
-                                                const create_label::pair RESOLUTIONS_HORIZONTAL, 
-                                                const create_label::pair RESOLUTIONS_VERTICAL,
+                                                const create_label::Pair RESOLUTIONS_HORIZONTAL, 
+                                                const create_label::Pair RESOLUTIONS_VERTICAL,
                                                 const create_label::Dataset_Format FORMAT);
     };
 };

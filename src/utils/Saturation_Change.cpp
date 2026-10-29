@@ -9,7 +9,7 @@ namespace utils{
     cv::Mat Saturation_Change(const cv::Mat& INPUT_BGR, const float SATURATION_SCALE = 10){
         // Check for empty images.
         if(INPUT_BGR.empty()){
-            cout << "Error: Could not add noise to empty image file." <<  endl;
+            cout << "\tError: Could not add noise to empty image file." <<  endl;
             return Mat{};
         }
 

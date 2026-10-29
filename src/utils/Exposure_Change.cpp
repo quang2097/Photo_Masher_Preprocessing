@@ -15,12 +15,12 @@ namespace utils{
      */
     static cv::Mat Adjust_Exposure(const cv::Mat& INPUT, const double EXPOSURE_FACTOR) {
         if (INPUT.empty()) {
-            cout << "Cannot adjust exposure of an empty photo." << endl;
+            cout << "\tCannot adjust exposure of an empty photo." << endl;
             return Mat{};
         }
 
         if (EXPOSURE_FACTOR <= 0.0) {
-            cout << "Warning: Exposure factor must be greater than 0. Returning original image." << endl;
+            cout << "\tWarning: Exposure factor must be greater than 0. Returning original image." << endl;
             return INPUT.clone();
         }
 

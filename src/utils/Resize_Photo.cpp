@@ -10,7 +10,7 @@ using std::min;
 namespace utils{
     cv::Mat Resize_Photo(const cv::Mat Input_Photo, const int RESOLUTIONS_HORIZONTAL, const int RESOLUTIONS_VERTICAL){
         if (Input_Photo.empty()) {
-            cout << "Entered empty photo. Abort resizing." << endl; 
+            cout << "\tEntered empty photo. Abort resizing." << endl; 
 
             return Mat{}; 
         }

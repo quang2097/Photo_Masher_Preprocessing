@@ -9,7 +9,7 @@ namespace utils{
     cv::Mat Hue_Change(const cv::Mat& INPUT_BGR, const int HUE_SHIFT = 18){
         // Check for empty images.
         if(INPUT_BGR.empty()){
-            cout << "Error: Could not apply hue change to empty image file." <<  endl;
+            cout << "\tError: Could not apply hue change to empty image file." <<  endl;
             return Mat{};
         }
 

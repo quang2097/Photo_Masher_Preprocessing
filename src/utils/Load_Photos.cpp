@@ -15,7 +15,7 @@ namespace utils{
         const Mat Photo = imread(PATH);
 
         if(Photo.empty()){
-            cout << "Failed to input file \'" << PATH << "\'." << endl;
+            cout << "\tFailed to input file \'" << PATH << "\'." << endl;
             return Mat{};
         }
 

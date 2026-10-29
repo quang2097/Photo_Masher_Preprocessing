@@ -21,8 +21,8 @@ namespace utils{
         // 1. Create a solid white canvas of the exact same size and type as the input
         Mat Final_Photo(INPUT_PHOTO.size(), INPUT_PHOTO.type(), cv::Scalar(255, 255, 255));
 
-        int Img_W = INPUT_PHOTO.cols;
-        int Img_H = INPUT_PHOTO.rows;
+        int Image_Width = INPUT_PHOTO.cols;
+        int Image_Height = INPUT_PHOTO.rows;
 
         // 2. Iterate through each Line in the YOLO label file
         for (const string& Line : YOLO26_LABELS) {
@@ -38,18 +38,18 @@ namespace utils{
             if (ss >> Class_Id >> X_Center >> Y_Center >> Width >> Height) {
                 
                 // 3. Convert normalized YOLO floats (0.0 to 1.0) into absolute pixel coordinates
-                int Px_W = static_cast<int>(Width * Img_W);
-                int Px_H = static_cast<int>(Height * Img_H);
+                int Pixel_Width = static_cast<int>(Width * Image_Width);
+                int Pixel_Height = static_cast<int>(Height * Image_Height);
                 
                 // Calculate top-left corner from the center coordinates
-                int Px_X = static_cast<int>((X_Center * Img_W) - (Px_W / 2.0f));
-                int Px_Y = static_cast<int>((Y_Center * Img_H) - (Px_H / 2.0f));
+                int Pixel_X = static_cast<int>((X_Center * Image_Width) - (Pixel_Width / 2.0f));
+                int Pixel_Y = static_cast<int>((Y_Center * Image_Height) - (Pixel_Height / 2.0f));
 
                 // 4. Create the OpenCV Rectangle
-                Rect Bbox(Px_X, Px_Y, Px_W, Px_H);
+                Rect Bbox(Pixel_X, Pixel_Y, Pixel_Width, Pixel_Height);
 
                 // 5. Safety check: intersect with image boundaries to prevent out-of-bounds crashes
-                Rect Image_Bounds(0, 0, Img_W, Img_H);
+                Rect Image_Bounds(0, 0, Image_Width, Image_Height);
                 Rect Safe_Bbox = Bbox & Image_Bounds;
 
                 // 6. Copy ONLY the pixels inside this bounding box from the original to the white canvas

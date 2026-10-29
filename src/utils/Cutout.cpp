@@ -19,17 +19,17 @@ namespace utils{
     static cv::Mat Apply_Cutout_Pixels(const cv::Mat& INPUT, const int CUTOUT_WIDTH, const int CUTOUT_HEIGHT, 
                                     const cv::Scalar& Fill_Color = cv::Scalar(0, 0, 0)) {
         if (INPUT.empty()) {
-            cout << "Cannot apply cutout preprocessing to an empty photo." << endl;
+            cout << "\tCannot apply cutout preprocessing to an empty photo." << endl;
             return Mat{};
         }
 
         if (CUTOUT_WIDTH <= 0 || CUTOUT_HEIGHT <= 0) {
-            cout << "Warning: Cutout dimensions must be greater than zero. Returning original image." << endl;
+            cout << "\tWarning: Cutout dimensions must be greater than zero. Returning original image." << endl;
             return INPUT.clone();
         }
 
         if (CUTOUT_WIDTH > INPUT.cols || CUTOUT_HEIGHT > INPUT.rows) {
-            cout << "Warning: Cutout dimensions cannot be larger than the image dimensions. Returning original image." << endl;
+            cout << "\tWarning: Cutout dimensions cannot be larger than the image dimensions. Returning original image." << endl;
             return INPUT.clone();
         }
 
@@ -62,12 +62,12 @@ namespace utils{
      */
     static cv::Mat Apply_Cutout_Percent(const cv::Mat& INPUT, const double WIDTH_PERCENT, const double HEIGHT_PERCENT, const cv::Scalar& Fill_Color = cv::Scalar(0, 0, 0)) {
         if (INPUT.empty()) {
-            cout << "Cannot apply cutout preprocessing to an empty photo." << endl;
+            cout << "\tCannot apply cutout preprocessing to an empty photo." << endl;
             return Mat{};
         }
 
         if (WIDTH_PERCENT <= 0.0 || WIDTH_PERCENT > 100.0 || HEIGHT_PERCENT <= 0.0 || HEIGHT_PERCENT > 100.0) {
-            cout << "Warning: Percentages must be between 0.0 and 100.0. Returning original image." << endl;
+            cout << "\tWarning: Percentages must be between 0.0 and 100.0. Returning original image." << endl;
             return INPUT.clone();
         }
 

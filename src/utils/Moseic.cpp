@@ -15,7 +15,7 @@ namespace utils{
      */
     static cv::Mat applyMosaic(const cv::Mat& INPUT, const int BLOCK_SIZE) {
         if (INPUT.empty()) {
-            cout << "Cannot apply mosaic preprocessing to an empty photo." << endl;
+            cout << "\tCannot apply mosaic preprocessing to an empty photo." << endl;
             return Mat{};
         }
 

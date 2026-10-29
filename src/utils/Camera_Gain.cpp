@@ -16,12 +16,12 @@ namespace utils{
      */
     static cv::Mat Apply_Gain(const cv::Mat& INPUT, const double GAIN_FACTOR){
         if (INPUT.empty()) {
-            cout << "Cannot apply camera gain to an empty photo." << endl;
+            cout << "\tCannot apply camera gain to an empty photo." << endl;
             return Mat{};
         }
 
         if (GAIN_FACTOR < 0.0){
-            cout << "Warning: Gain factor cannot be negative. Returning original image." << endl;
+            cout << "\tWarning: Gain factor cannot be negative. Returning original image." << endl;
             return INPUT.clone();
         }
 

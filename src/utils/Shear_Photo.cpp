@@ -19,7 +19,7 @@ namespace utils{
      */
     static cv::Mat Shear_Photo(const cv::Mat& INPUT, double Shear_X, double Shear_Y, const cv::Scalar& Fill_Color = cv::Scalar(0, 0, 0)) {
         if (INPUT.empty()) {
-            cout << "Cannot apply shear preprocessing to an empty photo." << endl;
+            cout << "\tCannot apply shear preprocessing to an empty photo." << endl;
             return Mat{};
         }
 

@@ -17,7 +17,7 @@ namespace utils{
      */
     static cv::Mat applyMotionBlur(const cv::Mat& INPUT, int Kernel_Size, const double ANGLE) {
         if (INPUT.empty()) {
-            cout << "Cannot apply motion blur preprocessing to an empty photo." << endl;
+            cout << "\tCannot apply motion blur preprocessing to an empty photo." << endl;
             return Mat{};
         }
 
