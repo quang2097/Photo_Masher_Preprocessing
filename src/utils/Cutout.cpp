@@ -71,9 +71,9 @@ namespace utils{
             return INPUT.clone();
         }
 
-        int cutoutWidth = static_cast<int>(INPUT.cols * (WIDTH_PERCENT / 100.0));
-        int cutoutHeight = static_cast<int>(INPUT.rows * (HEIGHT_PERCENT / 100.0));
+        int Cutout_Width = static_cast<int>(INPUT.cols * (WIDTH_PERCENT / 100.0));
+        int Cutput_Height = static_cast<int>(INPUT.rows * (HEIGHT_PERCENT / 100.0));
 
-        return Apply_Cutout_Pixels(INPUT, cutoutWidth, cutoutHeight, Fill_Color);
+        return Apply_Cutout_Pixels(INPUT, Cutout_Width, Cutput_Height, Fill_Color);
     }
 };

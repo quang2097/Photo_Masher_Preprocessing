@@ -117,7 +117,6 @@ namespace utils{
                     continue;
                 }
 
-
             }
 
             for(int Index = 0;Index < INPUT.size();Index += 1){
