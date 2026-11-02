@@ -7,12 +7,6 @@ using std::endl;
 using cv::Mat;
 
 namespace utils{
-    namespace noise_preprocessor{
-        enum Noise_Type{
-            SALT_AND_PEPPER, GAUSSIAN
-        };
-    };
-
     /**
      * Adds Noise to an image based on a given PERCENTAGE.
      * 
